@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="GraduationSystem"
+  id="myeclipse.1419088878627"
+  context-root="/gradsys"
+  j2ee-spec="5.0"
+  archive="GraduationSystem.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

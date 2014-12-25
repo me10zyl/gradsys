@@ -1,0 +1,14 @@
+#Tue Dec 23 11:50:03 CST 2014
+eclipse.preferences.version=1
+encoding//WebRoot/header.jsp=UTF-8
+encoding//WebRoot/lookteacherMessage.jsp=UTF-8
+encoding//WebRoot/personLogin.jsp=UTF-8
+encoding//WebRoot/setSubject.jsp=UTF-8
+encoding//WebRoot/studentChoiceSubject.jsp=UTF-8
+encoding//WebRoot/studentMessage.jsp=UTF-8
+encoding//WebRoot/subjectMessage.jsp=UTF-8
+encoding//WebRoot/teacherChoiceSubject.jsp=UTF-8
+encoding//WebRoot/teacherMessage.jsp=UTF-8
+encoding//src/com/graduationsystem/db/DBMain.java=GBK
+encoding//src/com/graduationsystem/sevlet/UserServlet.java=UTF-8
+encoding/<project>=UTF-8
