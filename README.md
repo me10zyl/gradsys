@@ -1,4 +1,8 @@
 A **CMS** System. Graduate Design Management System is a management system aimed at graduates need to design. It’s convenient for college graduates and graduate view about graduation design at any time, and to choose a topic of graduation design. 
+
+Test Accouts:<Br>
+username 12310320304 password 123123 (*student*)<br>
+username 611033 password 123123 (*teacher*)
 SQL DDL
 -----
 
