@@ -6,5 +6,6 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/ZyL MySQL Library"/>
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/ZyL&apos;s Tomcat 7.0"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/ZyL Struts Library"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>
