@@ -179,7 +179,7 @@ body {
 					<td align="left">
 						<%
 							for (Subject subject : arr_subject) {
-								out.print("<a href='" + request.getContextPath() + "/Subject/SeeSubjectDetail?subject_id=" + subject.getSubject_id() + "'>" + subject.getSubject_title() + "</a><br>");
+								out.print("<a href='" + request.getContextPath() + "/subject/seeSubjectDetail?subject_id=" + subject.getSubject_id() + "'>" + subject.getSubject_title() + "</a><br>");
 							}
 						%>
 					</td>

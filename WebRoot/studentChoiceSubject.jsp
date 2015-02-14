@@ -5,6 +5,7 @@
 <%@page import="com.graduationsystem.db.teacher.TeacherDAO"%>
 <%@page import="com.graduationsystem.db.student.Student"%>
 <%@page contentType="text/html; charset=UTF-8"%>
+<%@taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -182,7 +183,7 @@ body {
 					</tr>
 				</table>
 			</div>
-			<form action="<%=request.getContextPath()%>/Subject/StudentChoose">
+			<form action="<%=request.getContextPath()%>/subject/studentChoose">
 				<table class="choiceTab">
 					<tr bgcolor="#7fffd4" align="center">
 						<th>序号</th>
@@ -196,7 +197,7 @@ body {
 					<tr>
 						<td align="center"><%=subject.getSubject_id()%></td>
 						<td align="center"><a
-							href="<%=request.getContextPath()%>/Subject/SeeSubjectDetail?subject_id=<%=subject.getSubject_id()%>"
+							href="<%=request.getContextPath()%>/subject/seeSubjectDetail?subject_id=<%=subject.getSubject_id()%>"
 							title="点击查看详情"><%=subject.getSubject_title()%></a></td>
 						<%
 							ArrayList<Teacher> arr_teacher = subjectDAO.getDutyTeachersBySubjectId(subject.getSubject_id());
@@ -205,12 +206,12 @@ body {
 							<%
 								for (int i = 0; i < arr_teacher.size() - 1; i++) {
 										Teacher teacher = arr_teacher.get(i);
-										out.print("<a href='" + request.getContextPath() + "/User/SeeOtherTeacher?teacher_id=" + teacher.getTeacher_id() + "' title='点击查看详情'>");
+										out.print("<a href='" + request.getContextPath() + "/user/seeOtherTeacher?teacher_id=" + teacher.getTeacher_id() + "' title='点击查看详情'>");
 										out.print(teacher.getTeacher_name() + ",");
 										out.print("</a>");
 									}
 									if (arr_teacher.size() - 1 >= 0) {
-										out.print("<a href='" + request.getContextPath() + "/User/SeeOtherTeacher?teacher_id=" + arr_teacher.get(arr_teacher.size() - 1).getTeacher_id() + "' title='点击查看详情'>");
+										out.print("<a href='" + request.getContextPath() + "/user/seeOtherTeacher?teacher_id=" + arr_teacher.get(arr_teacher.size() - 1).getTeacher_id() + "' title='点击查看详情'>");
 										out.print(arr_teacher.get(arr_teacher.size() - 1).getTeacher_name());
 										out.print("</a>");
 									}
@@ -228,7 +229,7 @@ body {
 						if (page_ != 1) {
 					%>
 					<a
-						href="<%=request.getContextPath()%>/Subject/SeeSubject?page=<%=page_ - 1%>">上一页
+						href="<%=request.getContextPath()%>/subject/seeSubject?page=<%=page_ - 1%>">上一页
 					</a>
 					<%
 						}
@@ -238,7 +239,7 @@ body {
 							if (i == page_) {
 								out.println("<b>" + i + "</b>");
 							} else {
-								out.println("<a href='" + request.getContextPath() + "/Subject/SeeSubject?page=" + i + "'>" + i + "</a> ");
+								out.println("<a href='" + request.getContextPath() + "/subject/seeSubject?page=" + i + "'>" + i + "</a> ");
 							}
 						}
 					%>页
@@ -246,7 +247,7 @@ body {
 						if (page_ != pagecount) {
 					%>
 					<a
-						href="<%=request.getContextPath()%>/Subject/SeeSubject?page=<%=page_ + 1%>">下一页</a>
+						href="<%=request.getContextPath()%>/subject/seeSubject?page=<%=page_ + 1%>">下一页</a>
 					<%
 						}
 					%>

@@ -5,31 +5,78 @@
 
 <struts>
 
-    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
-    <constant name="struts.devMode" value="true" />
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+	<constant name="struts.devMode" value="true" />
 
-    <package name="default" namespace="/" extends="struts-default">
+	<package name="default" namespace="/" extends="struts-default">
 
-        <default-action-ref name="index" />
+		<!-- <default-action-ref name="index" /> -->
+		<interceptors>
+			<interceptor name="exceptionToast"
+				class="com.graduationsystem.interceptors.ExceptionInterceptor" />
+			<interceptor-stack name="zylStack">
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+				<interceptor-ref name="exceptionToast"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
 
-        <global-results>
-            <result name="error">/error.jsp</result>
-        </global-results>
+		<default-interceptor-ref name="zylStack">
+		</default-interceptor-ref>
 
-        <global-exception-mappings>
-            <exception-mapping exception="java.lang.Exception" result="error"/>
-        </global-exception-mappings>
+		<global-results>
+			<result name="error">/error.jsp</result>
+			<result name="index">
+				/index_.jsp
+			</result>
+		</global-results>
 
-        <action name="index">
-            <result type="redirectAction">
-                <param name="actionName">HelloWorld</param>
-                <param name="namespace">/example</param>
-            </result>
-        </action>
-    </package>
+		<global-exception-mappings>
+			<exception-mapping exception="java.lang.Exception"
+				result="error" />
+		</global-exception-mappings>
+	</package>
+	<package name="user" namespace="/user" extends="default">
+		<action name="*" class="com.graduationsystem.action.UserAction"
+			method="{1}">
+			<result name="student_logined">
+				/personLogin.jsp
+			</result>
+			<result name="teacher_logined">
+				/personLogin_t.jsp
+			</result>
+			<result name="student_profile">
+				/studentMessage.jsp
+			</result>
+			<result name="teacher_profile">
+				/teacherMessage.jsp
+			</result>
+			<result name="teacher_profile_look">
+				/lookteacherMessage.jsp
+			</result>
+		</action>
+	</package>
+	<package name="subject" namespace="/subject" extends="default">
+		<action name="*" class="com.graduationsystem.action.SubjectAction"
+			method="{1}">
+			<result name="student_subject_choose">
+				/studentChoiceSubject.jsp
+			</result>
+			<result name="teacher_subject_choose">
+				/teacherChoiceSubject.jsp
+			</result>
+			<result name="actionSeeSubjectDetail" type="chain">
+				seeSubjectDetail
+			</result>
+				<result name="actionSeeSubject" type="chain">
+				seeSubject
+			</result>
+			<result name="subject_detail">
+				/subjectMessage.jsp
+			</result>
+		</action>
+	</package>
+	<include file="example.xml" />
 
-    <include file="example.xml"/>
-
-    <!-- Add packages here -->
+	<!-- Add packages here -->
 
 </struts>

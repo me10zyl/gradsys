@@ -160,7 +160,7 @@ body {
 				</tr>
 				<tr align="center">
 					<td align="right" width="60"><input type="submit" value="注 销"
-						title="点击注销" style="background-color: royalblue" onClick="javascript:void(location.href='<%=request.getContextPath()%>/User/Logout')">
+						title="点击注销" style="background-color: royalblue" onClick="javascript:void(location.href='<%=request.getContextPath()%>/user/logout')">
 					</td>
 					<td align="right" width="60"><input type="submit" value="出 题"
 						title="点击出题" style="background-color: royalblue" onClick="javascript:void(location.href='<%=request.getContextPath()%>/setSubject.jsp')" style="font-color:red;">
@@ -168,7 +168,7 @@ body {
 				</tr>
 			</table>
 			<p style="margin-left:150px;">
-				<a href="<%=request.getContextPath()%>/Subject/SeeSubject"
+				<a href="<%=request.getContextPath()%>/subject/seeSubject"
 					style="color: #0099FF;font-size: 12px">负责题目情况>></a>
 			</p>
 			<%

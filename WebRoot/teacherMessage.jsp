@@ -157,7 +157,7 @@ body {
 		%>
 		<div id="showMessageBox">
 			<div class="personMessageLogo">个人信息</div>
-			<form action="<%=request.getContextPath()%>/User/Modify"
+			<form action="<%=request.getContextPath()%>/user/modify"
 				method="post">
 				<input name="teacher_id" value="<%=teacher.getTeacher_id()%>"
 					type="hidden">
@@ -200,7 +200,7 @@ body {
 							<%
 								ArrayList<Subject> arr_subject = teacherDAO.getSubjectsByTeacherId(teacher.getTeacher_id());
 								for (Subject subject : arr_subject) {
-									out.print("<a href='" + request.getContextPath() + "/Subject/SeeSubjectDetail?subject_id=" + subject.getSubject_id() + "'>" + subject.getSubject_title() + "</a><br>");
+									out.print("<a href='" + request.getContextPath() + "/subject/seeSubjectDetail?subject_id=" + subject.getSubject_id() + "'>" + subject.getSubject_title() + "</a><br>");
 								}
 							%>
 						</td>

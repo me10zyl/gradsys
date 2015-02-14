@@ -20,8 +20,12 @@ public class SubjectDAO extends DBMain<Subject> {
 	}
 
 	public void delete(int id) throws ClassNotFoundException, SQLException {
-		String sql = "delete from users where subject_id=?";
+		String sql = "delete from duty where subject_id=?";
+		String sql2 = "delete from subject where subject_id=?";
 		pst = this.getPreparedStatement(sql);
+		pst.setInt(1, id);
+		pst.executeUpdate();
+		pst = this.getPreparedStatement(sql2);
 		pst.setInt(1, id);
 		pst.executeUpdate();
 		realese();
@@ -48,7 +52,6 @@ public class SubjectDAO extends DBMain<Subject> {
 	// }
 	// return arr_teacher;
 	// }
-
 	public ArrayList<Teacher> getDutyTeachersBySubjectId(int id) throws ClassNotFoundException, SQLException {
 		String sql = "select * from teacher where teacher_id in (select teacher_id from duty where subject_id = ?)";
 		pst = this.getPreparedStatement(sql);
@@ -107,7 +110,6 @@ public class SubjectDAO extends DBMain<Subject> {
 		rst = pst.executeQuery();
 		// ---------������---------------------
 		if (rst.next()) {
-
 		}
 	}
 

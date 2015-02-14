@@ -148,7 +148,7 @@ body {
 		</div>
 		<div id="showMessageBox">
 			<div class="personMessageLogo">出题</div>
-			<form action="<%=request.getContextPath()%>/Subject/Set"
+			<form action="<%=request.getContextPath()%>/subject/set"
 				method="post">
 				<table class="showMessageTab">
 					<tr>

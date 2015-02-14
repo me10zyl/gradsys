@@ -164,12 +164,12 @@ body {
 				<tr align="center">
 					<td align="right" width="60"><input type="submit" value="注 销"
 						title="点击注销" style="background-color: royalblue"
-						onClick="javascript:void(location.href='<%=request.getContextPath()%>/User/Logout')">
+						onClick="javascript:void(location.href='<%=request.getContextPath()%>/user/logout')">
 					</td>
 				</tr>
 			</table>
 			<p style="margin-left:150px;">
-				<a href="<%=request.getContextPath()%>/Subject/SeeSubject"
+				<a href="<%=request.getContextPath()%>/subject/seeSubject"
 					style="color: #0099FF;font-size: 12px">查看选题情况>></a>
 			</p>
 			<%

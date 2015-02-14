@@ -1,4 +1,4 @@
-package com.graduationsystem.sevlet;
+package com.graduationsystem.servlet;
 
 import java.io.IOException;
 import java.sql.SQLException;

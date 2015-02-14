@@ -3,6 +3,7 @@
 <%@page import="com.graduationsystem.db.subject.SubjectDAO"%>
 <%@page import="com.graduationsystem.db.subject.Subject"%>
 <%@page contentType="text/html; charset=UTF-8"%>
+<%@taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -157,7 +158,7 @@ body {
 				style="text-decoration:none; color:#999;"> 首 页 </a>
 			</li> <a class="Curpagea">>题目详细信息</a>
 		</div>
-		<form action="<%=request.getContextPath()%>/Subject/Modify"
+		<form action="<%=request.getContextPath()%>/subject/modify"
 			method="post">
 			<div id="showMessageBox">
 				<div class="personMessageLogo">题目信息</div>
@@ -183,7 +184,7 @@ body {
 						<td align="left" id="description">
 							<%
 								for (Teacher teacher : arr_teacher) {
-													out.println("<a href='"+request.getContextPath()+"/User/SeeOtherTeacher?teacher_id=" + teacher.getTeacher_id() + "'>" + teacher.getTeacher_name() + "</a>");
+													out.println("<a href='"+request.getContextPath()+"/user/seeOtherTeacher?teacher_id=" + teacher.getTeacher_id() + "'>" + teacher.getTeacher_name() + "</a>");
 													}
 							%>
 						</td>

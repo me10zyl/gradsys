@@ -6,11 +6,11 @@
 	<display-name></display-name>
 	<servlet>
 		<servlet-name>LoginServlet</servlet-name>
-		<servlet-class>com.graduationsystem.sevlet.UserServlet</servlet-class>
+		<servlet-class>com.graduationsystem.servlet.UserServlet</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>SubjectServlet</servlet-name>
-		<servlet-class>com.graduationsystem.sevlet.SubjectServlet</servlet-class>
+		<servlet-class>com.graduationsystem.servlet.SubjectServlet</servlet-class>
 	</servlet>
 
 

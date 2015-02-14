@@ -160,7 +160,7 @@ body {
 		</div>
 		<div id="showMessageBox">
 			<div class="personMessageLogo">个人信息</div>
-			<form action="<%=request.getContextPath()%>/User/Modify"
+			<form action="<%=request.getContextPath()%>/user/modify"
 				method="post">
 				<input type="hidden" name="student_id"
 					value="<%=student.getStudent_id()%>">
@@ -212,7 +212,7 @@ body {
 						<td align="left">
 							<%
 								if (subject != null) {
-									out.println("<a href='" + request.getContextPath() + "/Subject/SeeSubjectDetail?subject_id=" + subject.getSubject_id() + "'>" + subject.getSubject_title() + "</a>");
+									out.println("<a href='" + request.getContextPath() + "/subject/seeSubjectDetail?subject_id=" + subject.getSubject_id() + "'>" + subject.getSubject_title() + "</a>");
 								} else {
 									out.println("无");
 								}

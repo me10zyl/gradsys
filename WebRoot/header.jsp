@@ -28,8 +28,8 @@
     <div id="nav">
      <ul>
          <li><a href="index_.jsp" target="mainFrame">首页</a></li>
-         <li><a href="<%=request.getContextPath()%>/User/SeeSelf" target="mainFrame">信息管理</a></li>
-         <li><a href="<%=request.getContextPath()%>/Subject/SeeSubject" target="mainFrame">题目选择</a></li>
+         <li><a href="<%=request.getContextPath()%>/user/seeSelf" target="mainFrame">信息管理</a></li>
+         <li><a href="<%=request.getContextPath()%>/subject/seeSubject" target="mainFrame">题目选择</a></li>
      </ul>
     </div>
 </div>

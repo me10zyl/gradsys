@@ -152,7 +152,7 @@ body {
 			<p>您好，欢迎来到成都东软学院毕业设计管理系统！</p>
 		</div>
 		<div id="login">
-			<form action="<%=path%>/User/Login" method="post">
+			<form action="<%=path%>/user/login" method="post">
 				<img src="<%=request.getContextPath()%>/images/login1.jpg">
 				<table class="loginTab">
 					<tr>
