@@ -1,4 +1,5 @@
 <%@page contentType="text/html; charset=utf-8" %>
+<%@taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -27,9 +28,10 @@
     </div>
     <div id="nav">
      <ul>
-         <li><a href="index_.jsp" target="mainFrame">首页</a></li>
-         <li><a href="<%=request.getContextPath()%>/user/seeSelf" target="mainFrame">信息管理</a></li>
-         <li><a href="<%=request.getContextPath()%>/subject/seeSubject" target="mainFrame">题目选择</a></li>
+         <li><a href="index_.jsp" target="mainFrame"><s:text name="header.homepage"></s:text></a></li>
+         <li><a href="<%=request.getContextPath()%>/user/seeSelf" target="mainFrame"><s:text name="header.profile"></s:text></a></li>
+         <li><a href="<%=request.getContextPath()%>/subject/seeSubject" target="mainFrame"><s:text name="header.subjectSelection"></s:text></a></li>
+         <li><a href="<%=request.getContextPath()%>/i18n"><s:text name="header.changlanguage"></s:text></a></li>
      </ul>
     </div>
 </div>

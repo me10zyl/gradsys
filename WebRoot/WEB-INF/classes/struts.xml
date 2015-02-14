@@ -7,6 +7,9 @@
 
 	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
 	<constant name="struts.devMode" value="true" />
+	<constant name="struts.custom.i18n.resources" value="gradsys" />
+	<constant name="struts.i18n.reload" value="true" />
+	<constant name="struts.configuration.xml.reload" value="true" />
 
 	<package name="default" namespace="/" extends="struts-default">
 
@@ -34,6 +37,18 @@
 			<exception-mapping exception="java.lang.Exception"
 				result="error" />
 		</global-exception-mappings>
+		<action name="index" class="com.graduationsystem.action.IndexAction">
+			<result>/index_.jsp</result>
+		</action>
+		<action name="header" class="com.graduationsystem.action.HeaderAction">
+			<result>/header.jsp</result>
+		</action>
+		<action name="i18n" class="com.graduationsystem.action.I18nAction">
+			<result type="chain">header</result>
+		</action>
+		<action name="i18najax" class="com.graduationsystem.action.I18nAjaxAction">
+			<result>/i18najaxs</result>
+		</action>
 	</package>
 	<package name="user" namespace="/user" extends="default">
 		<action name="*" class="com.graduationsystem.action.UserAction"
@@ -67,7 +82,7 @@
 			<result name="actionSeeSubjectDetail" type="chain">
 				seeSubjectDetail
 			</result>
-				<result name="actionSeeSubject" type="chain">
+			<result name="actionSeeSubject" type="chain">
 				seeSubject
 			</result>
 			<result name="subject_detail">

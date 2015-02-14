@@ -188,7 +188,7 @@ body {
 						</td>
 					</tr>
 					<tr>
-						<td align="right">密码：</td>
+						<td align="right"><s:text name="password"></s:text></td>
 						<td align="left"><input type="password"
 							value="<%=teacher.getTeacher_password()%>"
 							name="teacher_password">

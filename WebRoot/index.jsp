@@ -3,6 +3,7 @@
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 %>
+<%@taglib prefix="s" uri="/struts-tags"%>
 <html>
 <head>
 <base href="<%=basePath%>">
@@ -12,8 +13,8 @@
 
 <frameset rows="120,*" cols="*" frameborder="NO" border="0"
 	framespacing="0">
-	<frame src="header.jsp" name="topFrame" scrolling="NO" noresize>
-	<frame src="index_.jsp" name="mainFrame">
+	<frame src="header" name="topFrame" scrolling="NO" noresize>
+	<frame src="index" name="mainFrame">
 </frameset>
 
 <noframes>

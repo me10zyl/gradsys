@@ -2,8 +2,11 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
 	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
 %>
+<%@taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -139,45 +142,51 @@ body {
 				String userType = (String) session.getAttribute("userType");
 				if (userType.equals("student")) {
 					if (session.getAttribute("student") != null)
-						response.sendRedirect(request.getContextPath() + "/personLogin.jsp");
+						response.sendRedirect(request.getContextPath()
+								+ "/personLogin.jsp");
 				} else if (userType.equals("teacher")) {
 					if (session.getAttribute("teacher") != null)
-						response.sendRedirect(request.getContextPath() + "/personLogin_t.jsp");
+						response.sendRedirect(request.getContextPath()
+								+ "/personLogin_t.jsp");
 				}
 			}
 		}
 	%>
 	<div id="Bodycontainer">
 		<div id="Curpage">
-			<p>您好，欢迎来到成都东软学院毕业设计管理系统！</p>
+			<p>
+				<s:text name="welcome"></s:text>
+			</p>
 		</div>
 		<div id="login">
 			<form action="<%=path%>/user/login" method="post">
 				<img src="<%=request.getContextPath()%>/images/login1.jpg">
 				<table class="loginTab">
 					<tr>
-						<td align="right" width="60" id="num">学号：</td>
-						<td><input type="text" name="username" size="11" />
-						</td>
+						<td align="right" width="60" id="num"><s:text name="stuNum"></s:text></td>
+						<td><input type="text" name="username" size="11" /></td>
 					</tr>
 					<tr>
-						<td align="right">密码：</td>
+						<td align="right"><s:text name="password"></s:text></td>
 						<td><input type="password" name="password" size="11">
 						</td>
 					</tr>
 					<tr>
 						<td align="center"><input type="radio" name="userType"
-							value="teacher" onclick="changeNum(0)"/>教师</td>
+							value="teacher" onclick="changeNum(0)" /> <s:text name="teacher"></s:text></td>
 						<td><input type="radio" name="userType" value="student"
-							checked="checked" onclick="changeNum(1)"/>学生</td>
+							checked="checked" onclick="changeNum(1)" /> <s:text
+								name="student"></s:text></td>
 					</tr>
 					<tr>
-						<td align="right"><input type="submit" value="登 录"
-							style="background-color: royalblue; color: white;width: 50px;">
+						<td align="right"><input type="submit"
+							value='<s:text name="login"></s:text>'
+							style="background-color: royalblue; color: white; width: 50px;">
 						</td>
-						<td align="center"><input type="button" value="忘记密码"
-							style="background-color: royalblue; color: white;width: 70px">
-						</td>
+						<td align="center"><input type="button"
+							value='<s:text name="forgetPassword"></s:text>'
+							style="background-color: royalblue; color: white; width: 70px"
+							onclick="javascript:void(alert('请联系管理员!'))"></td>
 					</tr>
 
 				</table>
@@ -197,20 +206,51 @@ body {
 				<li><a>2014毕业设计选题开始了</a></li>
 				<li><a>2014毕业设计选题开始了</a></li>
 			</ul>
-
+			<s:debug></s:debug>
 		</div>
+
 	</div>
-<script type="text/javascript">
-function changeNum(n)
-{
-	var num = document.getElementById('num');
-	if(n == 0)
-	{
-		num.innerHTML = "工号：";
-	}else{
-		num.innerHTML = "学号：";
-	}
-}
-</script>
+	<script type="text/javascript" src="javascript/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript">
+		function changeNum(n) {
+			var num = document.getElementById('num');
+			if (n == 0) {
+				num.innerHTML = "工号：";
+			} else {
+				num.innerHTML = "学号：";
+			}
+		}
+		$(
+		function() {
+			var old_data;
+			var index = 0;
+			setInterval(function(){
+				$.ajax({
+					type : "POST",
+					//		dataType : "json",
+					url : "gradsys/i18najax",
+					//	timeout : 80000, //ajax请求超时时间80秒      
+					//			data : {
+					//			time : "100"
+					//	},//40秒后无论结果服务器都返回数据      
+					cache : false,
+					success : function(data) {
+						//从服务器得到数据，显示数据并继续查询  
+						//alert(data);
+						if(index == 0)
+						{
+							old_data = data;
+						}
+						if(old_data != data)
+						{
+							window.location.href="<%=request.getContextPath()%>/index";
+							old_data = data;
+						}
+						index++;
+					}
+				})
+			}, 300);
+		})
+	</script>
 </body>
 </html>

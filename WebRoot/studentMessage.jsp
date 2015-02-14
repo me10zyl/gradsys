@@ -3,6 +3,7 @@
 <%@page import="com.graduationsystem.db.subject.SubjectDAO"%>
 <%@page import="com.graduationsystem.db.student.Student"%>
 <%@page contentType="text/html; charset=UTF-8"%>
+<%@taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -166,7 +167,7 @@ body {
 					value="<%=student.getStudent_id()%>">
 				<table class="showMessageTab">
 					<tr>
-						<td align="right">学号：</td>
+						<td align="right"><s:text name="stuNum"></s:text></td>
 						<td align="left"><input type="text"
 							value="<%=student.getStudent_num()%>" name="student_num">
 						</td>
@@ -202,7 +203,7 @@ body {
 							name="student_telphone"></td>
 					</tr>
 					<tr>
-						<td align="right">密码：</td>
+						<td align="right"><s:text name="password"></s:text></td>
 						<td align="left"><input type="password"
 							value="<%=student.getStudent_password()%>"
 							name="student_password"></td>

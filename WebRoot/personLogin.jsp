@@ -1,5 +1,6 @@
 <%@page import="com.graduationsystem.db.student.Student"%>
 <%@page contentType="text/html; charset=UTF-8"%>
+<%@taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -150,7 +151,7 @@ body {
 			<!-- success -->
 			<table class="loginTab">
 				<tr>
-					<td align="right" width="60">学号：</td>
+					<td align="right" width="60"><s:text name="stuNum"></s:text></td>
 					<td align="left"><%=student.getStudent_num()%></td>
 				</tr>
 				<tr>
