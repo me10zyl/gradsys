@@ -47,6 +47,16 @@ public class SubjectAction extends ActionSupport {
 		session = request.getSession();
 	}
 
+	public String delete() throws NumberFormatException, ClassNotFoundException, SQLException
+	{
+		if(subject_id != null)
+		{
+			subjectDAO.delete(Integer.parseInt(subject_id));
+			return ACTION_SEE_SUBJECT;
+		}
+		return UserAction.INDEX;
+	}
+
 	@Override
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
@@ -178,7 +188,6 @@ public class SubjectAction extends ActionSupport {
 		ActionContext.getContext().getValueStack().setValue("page", page_);
 		return ACTION_SEE_SUBJECT;
 	}
-
 	public String teacherChoose() throws ClassNotFoundException, SQLException {
 		String[] subject_ids = request.getParameterValues("subject_id");
 		String page = request.getParameter("page");
@@ -208,7 +217,6 @@ public class SubjectAction extends ActionSupport {
 		ActionContext.getContext().getValueStack().setValue("page", page_);
 		return ACTION_SEE_SUBJECT;
 	}
-
 	private ArrayList<Subject> getSubjectsByPage(ArrayList<Subject> arr_subject, int pagesize, int page_) {
 		int index_previous = (page_ - 1) * pagesize;
 		int index_now = index_previous + pagesize > arr_subject.size() ? arr_subject.size() : index_previous + pagesize;

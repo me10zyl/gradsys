@@ -206,6 +206,10 @@ body {
 							title="点击修改" style="background-color: royalblue"
 							style="font-color:red;" onclick="removeDiabled()">
 						</td>
+						<td align="left"><input type="button" value="删除"
+							title="点击删除" style="background-color: black;color:white;"
+							 onclick="delete_()">
+						</td>
 						<%
 							}
 						%>
@@ -216,6 +220,12 @@ body {
 	</div>
 	</div>
 	<script type="text/javascript">
+		function delete_()
+		{
+			var form = document.forms[0];
+			form.action= "<%=request.getContextPath()%>/subject/delete";
+			form.submit();
+		}
 		function modify(a) {
 			if (a == 0) {
 				var title = document.getElementById('title');

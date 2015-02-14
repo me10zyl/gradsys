@@ -20,12 +20,16 @@ public class SubjectDAO extends DBMain<Subject> {
 	}
 
 	public void delete(int id) throws ClassNotFoundException, SQLException {
-		String sql = "delete from duty where subject_id=?";
-		String sql2 = "delete from subject where subject_id=?";
-		pst = this.getPreparedStatement(sql);
+		String sql1 = "update student set subject_id = null where subject_id=?";
+		String sql2 = "delete from duty where subject_id=?";
+		String sql3 = "delete from subject where subject_id=?";
+		pst = this.getPreparedStatement(sql1);
 		pst.setInt(1, id);
 		pst.executeUpdate();
 		pst = this.getPreparedStatement(sql2);
+		pst.setInt(1, id);
+		pst.executeUpdate();
+		pst = this.getPreparedStatement(sql3);
 		pst.setInt(1, id);
 		pst.executeUpdate();
 		realese();
