@@ -153,18 +153,18 @@ body {
 	%>
 	<div id="Bodycontainer">
 		<div id="Curpage">
-			<a class="Curpagea">当前位置：</a> <a
-				href="<%=request.getContextPath()%>/index_.jsp"
-				style="text-decoration:none; color:#999;"> 首 页 </a>
-			</li> <a class="Curpagea">>题目详细信息</a>
+			<a class="Curpagea"><s:text name='profile.current.position'></s:text></a> <a
+				href="<%=request.getContextPath()%>/index"
+				style="text-decoration:none; color:#999;"> <s:text name='profile.homepage'></s:text> </a>
+			</li> <a class="Curpagea">><s:text name='subject.detail.subject.information'></s:text></a>
 		</div>
 		<form action="<%=request.getContextPath()%>/subject/modify"
 			method="post">
 			<div id="showMessageBox">
-				<div class="personMessageLogo">题目信息</div>
+				<div class="personMessageLogo"><s:text name='subject.detail.subject.information'></s:text></div>
 				<table class="showMessageTab">
 					<tr>
-						<td align="right">题目名称：</td>
+						<td align="right"><s:text name='subject.set.subject.name'></</s:text></td>
 						<td align="left" id="title"><input type='text' id='title_input'
 							value="<%=subject.getSubject_title()%>" disabled="disabled"
 							name='subject_title'></td>
@@ -172,7 +172,7 @@ body {
 							<%
 								if (userType.equals("teacher")) {
 							%> <input type="button"
-							value="修改" title="点击修改" style="background-color: #FF7415"
+							value="<s:text name='profile.modify'></s:text>" title="点击<s:text name='profile.modify'></s:text>" style="background-color: #FF7415"
 							style="font-color:red;" onclick="modify(0)">
 							<%
 								}
@@ -180,7 +180,7 @@ body {
 						</td>
 					</tr>
 					<tr>
-						<td align="right">负责老师：</td>
+						<td align="right"><s:text name='subject.set.teacher'></</s:text></td>
 						<td align="left" id="description">
 							<%
 								for (Teacher teacher : arr_teacher) {
@@ -190,7 +190,7 @@ body {
 						</td>
 					</tr>
 					<tr>
-						<td align="right">题目详情：</td>
+						<td align="right"><s:text name='subject.set.subject.detail'></</s:text></td>
 						<td align="left"><textarea rows="10" cols="20"
 								name="subject_description" style="padding:0;margin:0"><%=subject.getSubject_description()%></textarea>
 						</td>
@@ -202,11 +202,11 @@ body {
 						<%
 							if (userType.equals("teacher")) {
 						%>
-						<td align="center"><input type="submit" value="保存"
+						<td align="center"><input type="submit" value="<s:text name='subject.detail.save'></s:text>"
 							title="点击修改" style="background-color: royalblue"
 							style="font-color:red;" onclick="removeDiabled()">
 						</td>
-						<td align="left"><input type="button" value="删除"
+						<td align="left"><input type="button" value="<s:text name='subject.detail.delete'></s:text>"
 							title="点击删除" style="background-color: black;color:white;"
 							 onclick="delete_()">
 						</td>

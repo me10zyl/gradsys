@@ -4,6 +4,7 @@
 <%@page import="com.graduationsystem.db.teacher.Teacher"%>
 <%@page import="com.graduationsystem.db.subject.Subject"%>
 <%@page contentType="text/html; charset=UTF-8"%>
+<%@taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -157,10 +158,10 @@ body {
 
 	<div id="Bodycontainer">
 		<div id="Curpage">
-			<a class="Curpagea">当前位置：</a> <a
-				href="<%=request.getContextPath()%>/index_.jsp"
-				style="text-decoration:none; color:#999;"> 首 页 </a>
-			</li> <a class="Curpagea">>选题</a>
+			<a class="Curpagea"><s:text name='subject.current.position'></s:text></a> <a
+				href="<%=request.getContextPath()%>/index"
+				style="text-decoration:none; color:#999;"><s:text name='subject.homepage'></s:text> </a>
+			</li> <a class="Curpagea">><s:text name='subject.selection'></s:text></a>
 		</div>
 		<%
 			Teacher teacher = (Teacher) session.getAttribute("teacher");
@@ -172,22 +173,22 @@ body {
 			int pagecount = (Integer) request.getAttribute("pagecount");
 		%>
 		<div id="choiceTopicBox">
-			<div class="choiceLogo">选 题</div>
+			<div class="choiceLogo"><s:text name='subject.subject.selection.space'></s:text></div>
 			<div class="pers">
 				<table align="center">
 					<tr>
-						<th>工号：<%=teacher.getTeacher_num()%></th>
-						<th>姓名:<%=teacher.getTeacher_name()%></th>
+						<th><s:text name='subject.teacher.job.number'></s:text><%=teacher.getTeacher_num()%></th>
+						<th><s:text name='subject.name'></s:text><%=teacher.getTeacher_name()%></th>
 					</tr>
 				</table>
 			</div>
 			<form action="<%=request.getContextPath()%>/subject/teacherChoose">
 				<table class="choiceTab">
 					<tr bgcolor="#7fffd4" align="center">
-						<th>序号</th>
-						<th>题 目</th>
-						<th>负责老师</th>
-						<th>选择</th>
+						<th><s:text name='subject.order'></s:text></th>
+						<th><s:text name='subject.subject'></s:text></th>
+						<th><s:text name='subject.responsibility.teacher'></s:text></th>
+						<th><s:text name='subject.selection'></s:text></th>
 					</tr>
 					<%
 						for (Subject subject : arr_subject) {
@@ -239,11 +240,11 @@ body {
 						if (page_ != 1) {
 					%>
 					<a
-						href="<%=request.getContextPath()%>/subject/seeSubject?page=<%=page_ - 1%>">上一页
+						href="<%=request.getContextPath()%>/subject/seeSubject?page=<%=page_ - 1%>"><s:text name='subject.previous.page'></s:text>
 					</a>
 					<%
 						}
-					%>第
+					%><s:text name='subject.the'></s:text>
 					<%
 						for (int i = 1; i <= pagecount; i++) {
 							if (i == page_) {
@@ -252,21 +253,21 @@ body {
 								out.println("<a href='" + request.getContextPath() + "/subject/seeSubject?page=" + i + "'>" + i + "</a> ");
 							}
 						}
-					%>页
+					%><s:text name='subject.page'></s:text>
 					<%
 						if (page_ != pagecount) {
 					%>
 					<a
-						href="<%=request.getContextPath()%>/subject/seeSubject?page=<%=page_ + 1%>">下一页</a>
+						href="<%=request.getContextPath()%>/subject/seeSubject?page=<%=page_ + 1%>"><s:text name='subject.next.page'></s:text></a>
 					<%
 						}
 					%>
 				</p>
 
-				<p style="margin-left:450px;color: red;font-size: 12px">温馨提示：每个人只能选择两个题目！</p>
+				<!-- <p style="margin-left:450px;color: red;font-size: 12px">温馨提示：每个人只能选择两个题目！</p>  -->
 				<p style="margin-left:600px">
 					<input type="hidden" value="<%=page_%>" name="page"> <input
-						type="submit" value="提 交">
+						type="submit" value="<s:text name='subject.submit'></s:text>">
 				</p>
 			</form>
 		</div>

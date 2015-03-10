@@ -39,6 +39,12 @@
 		</global-exception-mappings>
 		<action name="index" class="com.graduationsystem.action.IndexAction">
 			<result>/index_.jsp</result>
+			<result name="student_logined">
+				/personLogin.jsp
+			</result>
+			<result name="teacher_logined">
+				/personLogin_t.jsp
+			</result>
 		</action>
 		<action name="header" class="com.graduationsystem.action.HeaderAction">
 			<result>/header.jsp</result>
@@ -87,6 +93,9 @@
 			</result>
 			<result name="subject_detail">
 				/subjectMessage.jsp
+			</result>
+			<result name="set_subject">
+				/setSubject.jsp
 			</result>
 		</action>
 	</package>

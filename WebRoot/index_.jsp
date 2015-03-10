@@ -140,22 +140,20 @@ body {
 		if (loginState != null) {
 			if (loginState.equals("success")) {
 				String userType = (String) session.getAttribute("userType");
-				if (userType.equals("student")) {
-					if (session.getAttribute("student") != null)
+				if (userType.equals("student") || userType.equals("teacher")) {
+					if (session.getAttribute("student") != null || session.getAttribute("teacher") != null)
+					{
 						response.sendRedirect(request.getContextPath()
-								+ "/personLogin.jsp");
-				} else if (userType.equals("teacher")) {
-					if (session.getAttribute("teacher") != null)
-						response.sendRedirect(request.getContextPath()
-								+ "/personLogin_t.jsp");
-				}
+								+ "/index");
+					}
+				} 
 			}
 		}
 	%>
 	<div id="Bodycontainer">
 		<div id="Curpage">
 			<p>
-				<s:text name="welcome"></s:text>
+				<s:text name="index.welcome"></s:text>
 			</p>
 		</div>
 		<div id="login">
@@ -163,28 +161,28 @@ body {
 				<img src="<%=request.getContextPath()%>/images/login1.jpg">
 				<table class="loginTab">
 					<tr>
-						<td align="right" width="60" id="num"><s:text name="stuNum"></s:text></td>
+						<td align="right" width="60" id="num"><s:text name="index.student.number"></s:text></td>
 						<td><input type="text" name="username" size="11" /></td>
 					</tr>
 					<tr>
-						<td align="right"><s:text name="password"></s:text></td>
+						<td align="right"><s:text name="index.password"></s:text></td>
 						<td><input type="password" name="password" size="11">
 						</td>
 					</tr>
 					<tr>
 						<td align="center"><input type="radio" name="userType"
-							value="teacher" onclick="changeNum(0)" /> <s:text name="teacher"></s:text></td>
+							value="teacher" onclick="changeNum(0)" /> <s:text name="index.teacher"></s:text></td>
 						<td><input type="radio" name="userType" value="student"
 							checked="checked" onclick="changeNum(1)" /> <s:text
-								name="student"></s:text></td>
+								name="index.student"></s:text></td>
 					</tr>
 					<tr>
 						<td align="right"><input type="submit"
-							value='<s:text name="login"></s:text>'
+							value='<s:text name="index.login"></s:text>'
 							style="background-color: royalblue; color: white; width: 50px;">
 						</td>
 						<td align="center"><input type="button"
-							value='<s:text name="forgetPassword"></s:text>'
+							value='<s:text name="index.forget.password"></s:text>'
 							style="background-color: royalblue; color: white; width: 70px"
 							onclick="javascript:void(alert('请联系管理员!'))"></td>
 					</tr>
@@ -215,12 +213,12 @@ body {
 		function changeNum(n) {
 			var num = document.getElementById('num');
 			if (n == 0) {
-				num.innerHTML = "工号：";
+				num.innerHTML = "<s:text name='index.job.number'></s:text>";
 			} else {
-				num.innerHTML = "学号：";
+				num.innerHTML = "<s:text name='index.student.number'></s:text>";
 			}
 		}
-		$(
+		/*$(
 		function() {
 			var old_data;
 			var index = 0;
@@ -250,7 +248,7 @@ body {
 					}
 				})
 			}, 300);
-		})
+		})*/
 	</script>
 </body>
 </html>

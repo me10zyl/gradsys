@@ -154,68 +154,69 @@ body {
 	%>
 	<div id="Bodycontainer">
 		<div id="Curpage">
-			<a class="Curpagea">当前位置：</a> <a href="index_.jsp"
-				style="text-decoration:none; color:#999;" target="mainFrame"> 首
-				页 </a>
-			</li> <a class="Curpagea">>信息管理</a>
+			<a class="Curpagea"><s:text name='profile.current.position'></s:text></a> <a href="<%=request.getContextPath()%>/index"
+				style="text-decoration:none; color:#999;" target="mainFrame"><s:text name='profile.homepage'></s:text> </a>
+			</li> <a class="Curpagea">><s:text name='profile.profile'></s:text></a>
 		</div>
 		<div id="showMessageBox">
-			<div class="personMessageLogo">个人信息</div>
+			<div class="personMessageLogo"><s:text name='profile.profile'></s:text></div>
 			<form action="<%=request.getContextPath()%>/user/modify"
 				method="post">
 				<input type="hidden" name="student_id"
 					value="<%=student.getStudent_id()%>">
 				<table class="showMessageTab">
 					<tr>
-						<td align="right"><s:text name="stuNum"></s:text></td>
+						<td align="right"><s:text name="profile.student.number"></s:text></td>
 						<td align="left"><input type="text"
 							value="<%=student.getStudent_num()%>" name="student_num">
 						</td>
 					</tr>
 					<tr>
-						<td align="right">姓名：</td>
+						<td align="right"><s:text name='profile.name'></s:text></td>
 						<td align="left"><input type="text"
 							value="<%=student.getStudent_name()%>" name="student_name">
 						</td>
 					</tr>
 					<tr>
-						<td align="right">性别：</td>
+						<td align="right"><s:text name='profile.gender'></s:text></td>
 						<td align="left"><input type="text"
 							value="<%=student.getStudent_gender()%>" name="student_gender">
 						</td>
 					</tr>
 					<tr>
-						<td align="right">年级：</td>
+						<td align="right"><s:text name='profile.grade'></s:text></td>
 						<td align="left"><input type="text"
 							value="<%=student.getStudent_grade()%>" name="student_grade">
 						</td>
 					</tr>
 					<tr>
-						<td align="right">专业：</td>
+						<td align="right"><s:text name='profile.major'></s:text></td>
 						<td align="left"><input type="text"
 							value="<%=student.getStudent_major()%>" name="student_major">
 						</td>
 					</tr>
 					<tr>
-						<td align="right">电话：</td>
+						<td align="right"><s:text name='profile.tel'></s:text></td>
 						<td align="left"><input type="text"
 							value="<%=student.getStudent_telphone()%>"
 							name="student_telphone"></td>
 					</tr>
 					<tr>
-						<td align="right"><s:text name="password"></s:text></td>
+						<td align="right"><s:text name='profile.password'></s:text></td>
 						<td align="left"><input type="password"
 							value="<%=student.getStudent_password()%>"
 							name="student_password"></td>
 					</tr>
 					<tr>
-						<td align="right">选题情况：</td>
+						<td align="right"><s:text name='profile.subject.selection'></s:text></td>
 						<td align="left">
 							<%
 								if (subject != null) {
 									out.println("<a href='" + request.getContextPath() + "/subject/seeSubjectDetail?subject_id=" + subject.getSubject_id() + "'>" + subject.getSubject_title() + "</a>");
 								} else {
-									out.println("无");
+									%>
+									<s:text name='profile.none'></s:text>
+									<%
 								}
 							%>
 						</td>
@@ -223,7 +224,7 @@ body {
 				</table>
 				<table style="margin: 10px 500px">
 					<tr>
-						<td><input type="submit" value="修改"
+						<td><input type="submit" value="<s:text name='profile.modify'></s:text>"
 							style="background-color:#0066ff"></td>
 					</tr>
 				</table>

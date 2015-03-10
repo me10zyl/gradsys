@@ -1,4 +1,5 @@
 <%@page contentType="text/html; charset=utf-8"%>
+<%@taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -142,35 +143,35 @@ body {
 <body>
 	<div id="Bodycontainer">
 		<div id="Curpage">
-			<a class="Curpagea">当前位置：</a> <a href="<%=request.getContextPath()%>/index_.jsp"
-				style="text-decoration:none; color:#999;"> 首 页 </a>
-			</li> <a class="Curpagea">>出题</a>
+			<a class="Curpagea"><s:text name='subject.current.position'></s:text></a> <a href="<%=request.getContextPath()%>/index"
+				style="text-decoration:none; color:#999;"><s:text name='subject.homepage'></s:text> </a>
+			</li> <a class="Curpagea">><s:text name='subject.set.setsubject'></s:text></a>
 		</div>
 		<div id="showMessageBox">
-			<div class="personMessageLogo">出题</div>
+			<div class="personMessageLogo"><s:text name='subject.set.setsubject'></s:text></div>
 			<form action="<%=request.getContextPath()%>/subject/set"
 				method="post">
 				<table class="showMessageTab">
 					<tr>
-						<td align="right">题目名称：</td>
-						<td align="left"><input type="text" title="请输入你出题目"
-							value="请输入你出题目" onfocus="onFoc(this)" name="subject_title">
+						<td align="right"><s:text name='subject.set.subject.name'></s:text></td>
+						<td align="left"><input type="text" title="<s:text name='subject.set.subject.name.hint'></s:text>"
+							value="<s:text name='subject.set.subject.name.hint'></s:text>" onfocus="onFoc(this)" name="subject_title">
 						</td>
 					</tr>
 					<tr>
-						<td align="right">出题老师：</td>
-						<td align="left">张小华</td>
+						<td align="right"><s:text name='subject.set.teacher'></s:text></td>
+						<td align="left">${teacher.teacher_name}</td>
 					</tr>
 					<tr>
-						<td align="right">题目详情：</td>
+						<td align="right"><s:text name='subject.set.subject.detail'></s:text></td>
 						<td align="left"><textarea rows="10" cols="20"
-								title="请输入题目详情" onfocus="onFoc2(this)" name="subject_detail">请输入题目详情</textarea>
+								title="<s:text name='subject.set.subject.detail.hint'></s:text>" onfocus="onFoc2(this)" name="subject_detail"><s:text name='subject.set.subject.detail.hint'></s:text></textarea>
 						</td>
 					</tr>
 				</table>
 				<table style="margin: 10px 500px">
 					<tr>
-						<td><input type="submit" value="出题"
+						<td><input type="submit" value="<s:text name='subject.set.setsubject'></s:text>"
 							style="background-color:#0066ff"></td>
 					</tr>
 				</table>

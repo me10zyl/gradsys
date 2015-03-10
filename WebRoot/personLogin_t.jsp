@@ -1,6 +1,7 @@
 <%@page import="com.graduationsystem.db.teacher.Teacher"%>
 <%@page import="com.graduationsystem.db.student.Student"%>
 <%@page contentType="text/html; charset=UTF-8"%>
+<%@taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -141,7 +142,7 @@ body {
 			<p><%
 					if (teacher != null)
 						out.print(teacher.getTeacher_name());
-				%>老师您好，欢迎您！</p>
+				%><s:text name="login.teacher.welcome"></s:text></p>
 		</div>
 		<div id="userMessage">
 			<img src="<%=request.getContextPath()%>/images/login1.jpg">
@@ -151,25 +152,25 @@ body {
 			<!-- success -->
 			<table class="loginTab">
 				<tr>
-					<td align="right" width="60">工号：</td>
+					<td align="right" width="60"><s:text name="login.teacher.job.number"></s:text></td>
 					<td align="left"><%=teacher.getTeacher_num()%></td>
 				</tr>
 				<tr>
-					<td align="right" width="60">姓名：</td>
+					<td align="right" width="60"><s:text name="login.name"></s:text></td>
 					<td align="left"><%=teacher.getTeacher_name()%></td>
 				</tr>
 				<tr align="center">
-					<td align="right" width="60"><input type="submit" value="注 销"
-						title="点击注销" style="background-color: royalblue" onClick="javascript:void(location.href='<%=request.getContextPath()%>/user/logout')">
+					<td align="right" width="60"><input type="submit" value="<s:text name='login.logout'></s:text>"
+						title="<s:text name='login.click.to.logout'></s:text>" style="background-color: royalblue" onClick="javascript:void(location.href='<%=request.getContextPath()%>/user/logout')">
 					</td>
-					<td align="right" width="60"><input type="submit" value="出 题"
-						title="点击出题" style="background-color: royalblue" onClick="javascript:void(location.href='<%=request.getContextPath()%>/setSubject.jsp')" style="font-color:red;">
+					<td align="right" width="60"><input type="submit" value="<s:text name='login.teacher.set'></s:text>"
+						title="<s:text name='login.click.to.set'></s:text>" style="background-color: royalblue" onClick="javascript:void(location.href='<%=request.getContextPath()%>/subject/seeSetSubject')" style="font-color:red;">
 					</td>
 				</tr>
 			</table>
 			<p style="margin-left:150px;">
 				<a href="<%=request.getContextPath()%>/subject/seeSubject"
-					style="color: #0099FF;font-size: 12px">负责题目情况>></a>
+					style="color: #0099FF;font-size: 12px"><s:text name="login.teacher.subject.responsibility"></s:text>>></a>
 			</p>
 			<%
 				} else if (loginState.equals("notexist")) {
@@ -178,12 +179,12 @@ body {
 			<table class="loginTab">
 				<tr align="center">
 					<td align="right" width="60" colspan="2"><font color='red'
-						size="+1" face="幼圆">用户名不存在！</font>
+						size="+1" face="幼圆"><s:text name='login.username.not.exist'></s:text></font>
 					</td>
 				</tr>
 				<tr align="center">
-					<td align="right" width="60"><b><a href="<%=request.getContextPath()%>/index_.jsp"
-							target="mainFrame">点击</a> </b>重新登陆...</td>
+					<td align="right" width="60"><b><a href="<%=request.getContextPath()%>/index"
+							target="mainFrame"><s:text name='login.click'></s:text></a> </b><s:text name='login.login.again'></s:text></td>
 				</tr>
 			</table>
 			<%
@@ -193,12 +194,12 @@ body {
 			<table class="loginTab">
 				<tr>
 					<td align="right" width="60"><font color='red' size="+1"
-						face="幼圆">密码错误!</font>
+						face="幼圆"><s:text name='login.password.wrong'></s:text></font>
 					</td>
 				</tr>
 				<tr align="center">
-					<td align="right" width="60"><b><a href="<%=request.getContextPath()%>/index_.jsp"
-							target="mainFrame">点击</a> </b>重新登陆...</td>
+					<td align="right" width="60"><b><a href="<%=request.getContextPath()%>/index"
+							target="mainFrame"><s:text name='login.click'></s:text></a> </b><s:text name='login.login.again'></s:text></td>
 				</tr>
 			</table>
 			<%

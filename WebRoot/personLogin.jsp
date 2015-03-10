@@ -140,7 +140,7 @@ body {
 				<%
 					if (student != null)
 						out.print(student.getStudent_name());
-				%>同学您好，欢迎您！
+				%><s:text name="login.welcome"></s:text>
 			</p>
 		</div>
 		<div id="userMessage">
@@ -151,27 +151,27 @@ body {
 			<!-- success -->
 			<table class="loginTab">
 				<tr>
-					<td align="right" width="60"><s:text name="stuNum"></s:text></td>
+					<td align="right" width="60"><s:text name="login.student.number"></s:text></td>
 					<td align="left"><%=student.getStudent_num()%></td>
 				</tr>
 				<tr>
-					<td align="right" width="60">姓名：</td>
+					<td align="right" width="60"><s:text name="login.name"></s:text></td>
 					<td align="left"><%=student.getStudent_name()%></td>
 				</tr>
 				<tr>
-					<td align="right" width="60">专业：</td>
+					<td align="right" width="60"><s:text name="login.major"></s:text></td>
 					<td align="left"><%=student.getStudent_major()%></td>
 				</tr>
 				<tr align="center">
-					<td align="right" width="60"><input type="submit" value="注 销"
-						title="点击注销" style="background-color: royalblue"
+					<td align="right" width="60"><input type="submit" value="<s:text name='login.logout'></s:text>"
+						title="<s:text name='login.click.to.logout'></s:text>" style="background-color: royalblue"
 						onClick="javascript:void(location.href='<%=request.getContextPath()%>/user/logout')">
 					</td>
 				</tr>
 			</table>
 			<p style="margin-left:150px;">
 				<a href="<%=request.getContextPath()%>/subject/seeSubject"
-					style="color: #0099FF;font-size: 12px">查看选题情况>></a>
+					style="color: #0099FF;font-size: 12px"><s:text name="login.check.subject.selection"></s:text>></a>
 			</p>
 			<%
 				} else if (loginState.equals("notexist")) {
@@ -180,11 +180,11 @@ body {
 			<table class="loginTab">
 				<tr align="center">
 					<td align="right" width="60" colspan="2"><font color='red'
-						size="+1" face="幼圆">用户名不存在！</font></td>
+						size="+1" face="幼圆"><s:text name='login.username.not.exist'></s:text></font></td>
 				</tr>
 				<tr align="center">
-					<td align="right" width="60"><b><a href="<%=request.getContextPath()%>/index_.jsp"
-							target="mainFrame">点击</a> </b>重新登陆...</td>
+					<td align="right" width="60"><b><a href="<%=request.getContextPath()%>/index"
+							target="mainFrame"><s:text name='login.click'></s:text></a> </b><s:text name='login.login.again'></s:text></td>
 				</tr>
 			</table>
 			<%
@@ -194,11 +194,11 @@ body {
 			<table class="loginTab">
 				<tr>
 					<td align="right" width="60"><font color='red' size="+1"
-						face="幼圆">密码错误!</font></td>
+						face="幼圆"><s:text name='login.password.wrong'></s:text></font></td>
 				</tr>
 				<tr align="center">
-					<td align="right" width="60"><b><a href="<%=request.getContextPath()%>/index_.jsp"
-							target="mainFrame">点击</a> </b>重新登陆...</td>
+					<td align="right" width="60"><b><a href="<%=request.getContextPath()%>/index"
+							target="mainFrame"><s:text name='login.click'></s:text></a> </b><s:text name='login.login.again'></s:text></td>
 				</tr>
 			</table>
 			<%
@@ -221,6 +221,7 @@ body {
 				<li><a >2014毕业设计选题开始了</a></li>
 				<li><a >2014毕业设计选题开始了</a></li>
 				<li><a >2014毕业设计选题开始了</a></li>
+				<s:debug></s:debug>
 			</ul>
 
 		</div>

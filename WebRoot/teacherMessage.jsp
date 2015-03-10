@@ -3,6 +3,7 @@
 <%@page import="com.graduationsystem.db.teacher.TeacherDAO"%>
 <%@page import="com.graduationsystem.db.teacher.Teacher"%>
 <%@page contentType="text/html; charset=UTF-8"%>
+<%@taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -147,55 +148,55 @@ body {
 
 	<div id="Bodycontainer">
 		<div id="Curpage">
-			<a class="Curpagea">当前位置：</a> <a href="<%=request.getContextPath()%>/index_.jsp"
-				style="text-decoration:none; color:#999;"> 首 页 </a>
-			</li> <a class="Curpagea">>信息管理</a>
+			<a class="Curpagea"><s:text name='profile.current.position'></s:text></a> <a href="<%=request.getContextPath()%>/index"
+				style="text-decoration:none; color:#999;"> <s:text name='profile.homepage'></s:text> </a>
+			</li> <a class="Curpagea">><s:text name='profile.profile'></s:text></a>
 		</div>
 		<%
 			Teacher teacher = (Teacher) session.getAttribute("teacher");
 			TeacherDAO teacherDAO = new TeacherDAO();
 		%>
 		<div id="showMessageBox">
-			<div class="personMessageLogo">个人信息</div>
+			<div class="personMessageLogo"><s:text name='profile.profile'></s:text></div>
 			<form action="<%=request.getContextPath()%>/user/modify"
 				method="post">
 				<input name="teacher_id" value="<%=teacher.getTeacher_id()%>"
 					type="hidden">
 				<table class="showMessageTab">
 					<tr>
-						<td align="right">工号：</td>
+						<td align="right"><s:text name='profile.job.number'></s:text></td>
 						<td align="left"><input type="text"
 							value="<%=teacher.getTeacher_num()%>" name="teacher_num">
 						</td>
 					</tr>
 					<tr>
-						<td align="right">姓名：</td>
+						<td align="right"><s:text name='profile.name'></s:text></td>
 						<td align="left"><input type="text"
 							value="<%=teacher.getTeacher_name()%>" name="teacher_name">
 						</td>
 					</tr>
 					<tr>
-						<td align="right">性别：</td>
+						<td align="right"><s:text name='profile.gender'></s:text></td>
 						<td align="left"><input type="text"
 							value="<%=teacher.getTeacher_gender()%>" name="teacher_gender">
 						</td>
 					</tr>
 					<tr>
-						<td align="right">电话：</td>
+						<td align="right"><s:text name='profile.tel'></s:text></td>
 						<td align="left"><input type="text"
 							value="<%=teacher.getTeacher_telephone()%>"
 							name="teacher_telephone">
 						</td>
 					</tr>
 					<tr>
-						<td align="right"><s:text name="password"></s:text></td>
+						<td align="right"><s:text name='profile.password'></s:text></td>
 						<td align="left"><input type="password"
 							value="<%=teacher.getTeacher_password()%>"
 							name="teacher_password">
 						</td>
 					</tr>
 					<tr>
-						<td align="right">负责题目：</td>
+						<td align="right"><s:text name='profile.teacher.subject.responsibility'></s:text></td>
 						<td align="left">
 							<%
 								ArrayList<Subject> arr_subject = teacherDAO.getSubjectsByTeacherId(teacher.getTeacher_id());
@@ -208,7 +209,7 @@ body {
 				</table>
 				<table style="margin: 10px 500px">
 					<tr>
-						<td><input type="submit" value="修改"
+						<td><input type="submit" value="<s:text name='profile.modify'></s:text>"
 							style="background-color:#0066ff">
 						</td>
 					</tr>

@@ -37,9 +37,10 @@ public class SubjectAction extends ActionSupport {
 	public static final String STUDENT_SUBJECT_CHOOSE = "student_subject_choose";
 	public static final String TEACHER_SUBJECT_CHOOSE = "teacher_subject_choose";
 	public static final String SUBJECT_DETAIL = "subject_detail";
+	public static final String SET_SUBJECT = "set_subject";
 	public static final String ACTION_SEE_SUBEJECT_DETAIL = "actionSeeSubjectDetail";
 	public static final String ACTION_SEE_SUBJECT = "actionSeeSubject";
-
+	
 	public SubjectAction() throws UnsupportedEncodingException {
 		// TODO Auto-generated constructor stub
 		request = ServletActionContext.getRequest();
@@ -152,7 +153,12 @@ public class SubjectAction extends ActionSupport {
 		ActionContext.getContext().getValueStack().setValue("subject_id", subject.getSubject_id());
 		return ACTION_SEE_SUBEJECT_DETAIL;
 	}
-
+	
+	public String seeSetSubject()
+	{
+		return SET_SUBJECT;
+	}
+	
 	public void setPage(String page) {
 		this.page = page;
 	}
