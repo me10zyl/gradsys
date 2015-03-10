@@ -166,6 +166,9 @@ body {
 					<td align="right" width="60"><input type="submit" value="<s:text name='login.teacher.set'></s:text>"
 						title="<s:text name='login.click.to.set'></s:text>" style="background-color: royalblue" onClick="javascript:void(location.href='<%=request.getContextPath()%>/subject/seeSetSubject')" style="font-color:red;">
 					</td>
+					<td align="right" width="60"><input type="submit" value="<s:text name='login.set.notice'></s:text>"
+						title="<s:text name='login.set.notice'></s:text>" style="background-color: royalblue" onClick="javascript:void(location.href='<%=request.getContextPath()%>/notice/seeAdd')" style="font-color:red;">
+					</td>
 				</tr>
 			</table>
 			<p style="margin-left:150px;">

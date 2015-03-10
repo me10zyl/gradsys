@@ -115,11 +115,12 @@ body {
 }
 
 #information {
-	width: 433px;
+	width: 457px;
 	height: 400px;
 	border: 1px solid royalblue;
 	float: left;
 	margin: 10px 5px;
+	overflow: auto;
 }
 
 #information a {
@@ -130,6 +131,10 @@ body {
 #information a:hover {
 	text-decoration: inherit;
 	color: red
+}
+ul
+{
+	text-align: left;
 }
 </style>
 </head>
@@ -193,18 +198,7 @@ body {
 		<div id="information">
 			<img src="<%=request.getContextPath()%>/images/inform.png">
 			<ul>
-				<li><a>2014毕业设计选题开始了</a></li>
-				<li><a>2014毕业设计选题开始了</a></li>
-				<li><a>2014毕业设计选题开始了</a></li>
-				<li><a>2014毕业设计选题开始了</a></li>
-				<li><a>2014毕业设计选题开始了</a></li>
-				<li><a>2014毕业设计选题开始了</a></li>
-				<li><a>2014毕业设计选题开始了</a></li>
-				<li><a>2014毕业设计选题开始了</a></li>
-				<li><a>2014毕业设计选题开始了</a></li>
-				<li><a>2014毕业设计选题开始了</a></li>
 			</ul>
-			<s:debug></s:debug>
 		</div>
 
 	</div>
@@ -218,37 +212,48 @@ body {
 				num.innerHTML = "<s:text name='index.student.number'></s:text>";
 			}
 		}
-		/*$(
+		$(
 		function() {
 			var old_data;
 			var index = 0;
-			setInterval(function(){
-				$.ajax({
-					type : "POST",
-					//		dataType : "json",
-					url : "gradsys/i18najax",
-					//	timeout : 80000, //ajax请求超时时间80秒      
-					//			data : {
-					//			time : "100"
-					//	},//40秒后无论结果服务器都返回数据      
-					cache : false,
-					success : function(data) {
-						//从服务器得到数据，显示数据并继续查询  
-						//alert(data);
-						if(index == 0)
-						{
-							old_data = data;
-						}
-						if(old_data != data)
-						{
-							window.location.href="<%=request.getContextPath()%>/index";
-							old_data = data;
-						}
-						index++;
+			$.ajax({
+				type : "POST",
+				//		dataType : "json",
+				url : "notice/seeAll",
+				//	timeout : 80000, //ajax请求超时时间80秒      
+				//			data : {
+				//			time : "100"
+				//	},//40秒后无论结果服务器都返回数据      
+				cache : false,
+				success : function(data) {
+					//从服务器得到数据，显示数据并继续查询
+					if(data)
+					{
+					var json = JSON.parse(data);
+					for(var i=0;i < json.length;i++)
+					{
+						$("#information ul").append("<li><a href='<%=path%>/notice/see?notice_id="+json[i].notice_id+"'>"+ json[i].notice_title+"</a></li>");
 					}
-				})
-			}, 300);
-		})*/
+					}else
+					{
+						alert('连接服务器失败！');
+						$("#information ul").html("");
+					}
+					if(index == 0)
+					{
+						old_data = data;
+					}
+					if(old_data != data)
+					{
+						window.location.href="<%=request.getContextPath()%>/index";
+						old_data = data;
+					}
+					index++;
+				}
+			})
+			
+		
+		})
 	</script>
 </body>
 </html>

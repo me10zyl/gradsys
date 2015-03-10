@@ -1,8 +1,8 @@
-package com.graduationsystem.db;
+package com.graduationsystem.action;
 
 /**
- * 用于代码复用，即放置所有DB表操作类中的相同代码
- * 是所有DB表操作类的父类
+ * ���ڴ��븴�ã�����������DB��������е���ͬ����
+ * ������DB�������ĸ���
  */
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -20,14 +20,14 @@ import java.util.Vector;
 public abstract class DBMain<T>
 {
 	/**
-	 * 所有DB表操作类都共同拥有的变量
+	 * ����DB������඼��ͬӵ�еı���
 	 */
 	protected Connection con = null;
 	protected PreparedStatement pst = null;
 	protected ResultSet rst = null;
 	
 	/**
-	 * 获得PreparedStatement对象
+	 * ���PreparedStatement����
 	 * @param sql
 	 * @return
 	 * @throws ClassNotFoundException
@@ -35,17 +35,17 @@ public abstract class DBMain<T>
 	 */
 	protected PreparedStatement getPreparedStatement(String sql) throws ClassNotFoundException, SQLException
 	{
-		//------加载数据库驱动---------------------
+		//------������ݿ���---------------------
 		Class.forName("com.mysql.jdbc.Driver");
-		//------获得数据库连接----------------------
+		//------�����ݿ�����----------------------
 		 con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/graduationsystem", "root", "");
-		//-------封装SQL语句---------------------
+		//-------��װSQL���---------------------
 		//String sql = "select * from users";
 		 pst =  con.prepareStatement(sql,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY,ResultSet.HOLD_CURSORS_OVER_COMMIT);
 		 return pst;
 	}
 	/**
-	 * 释放数据库连接
+	 * �ͷ���ݿ�����
 	 * @throws SQLException
 	 */
 	public void realese() throws SQLException

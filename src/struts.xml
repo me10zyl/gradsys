@@ -99,6 +99,24 @@
 			</result>
 		</action>
 	</package>
+
+	<package name='notice' namespace="/notice" extends="default">
+		<action name="*" class="com.graduationsystem.action.NoticeAction"
+			method="{1}">
+			<result name="notice_detail">
+				/noticeRelease.jsp
+			</result>
+			<result name="notice_set">
+				/setNotice.jsp
+			</result>
+			<result name="action_see_notice" type="chain">
+				see
+			</result>
+			<result name="servlet_ajax_see_all">
+				/ajax/notice/seeAll
+			</result>
+		</action>
+	</package>
 	<include file="example.xml" />
 
 	<!-- Add packages here -->
