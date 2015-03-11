@@ -47,7 +47,10 @@ public class NoticeAjaxServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		try {
 			ArrayList<Notice> notices = noticeDAO.getAll();
+			response.setContentType("text/plain");
+			response.setCharacterEncoding("utf-8");
 			PrintWriter pw = response.getWriter();
+//			response.setHeader("Content-Type", "text/plain;charset=utf-8");
 			pw.print("[");
 			for(int i = 0;i < notices.size();i++)
 			{

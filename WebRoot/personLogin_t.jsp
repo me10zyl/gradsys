@@ -2,10 +2,17 @@
 <%@page import="com.graduationsystem.db.student.Student"%>
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
 <!DOCTYPE html>
 <html>
 <head lang="en">
 <meta charset="UTF-8">
+<base href="<%= basePath %>">
 <title></title>
 <style>
 body {
@@ -110,11 +117,12 @@ body {
 }
 
 #information {
-	width: 433px;
+	width: 457px;
 	height: 400px;
 	border: 2px solid royalblue;
 	float: left;
 	margin: 10px 5px;
+	overflow: auto;
 }
 
 #information a {
@@ -213,33 +221,62 @@ body {
 		<div id="information">
 			<img src="<%=request.getContextPath()%>/images/inform.png">
 			<ul>
-				<li><a >2014毕业设计选题开始了</a>
-				</li>
-				<li><a >2014毕业设计选题开始了</a>
-				</li>
-				<li><a >2014毕业设计选题开始了</a>
-				</li>
-				<li><a >2014毕业设计选题开始了</a>
-				</li>
-				<li><a >2014毕业设计选题开始了</a>
-				</li>
-				<li><a >2014毕业设计选题开始了</a>
-				</li>
-				<li><a >2014毕业设计选题开始了</a>
-				</li>
-				<li><a >2014毕业设计选题开始了</a>
-				</li>
-				<li><a >2014毕业设计选题开始了</a>
-				</li>
-				<li><a >2014毕业设计选题开始了</a>
-				</li>
-				<li><a >2014毕业设计选题开始了</a>
-				</li>
-				<li><a >2014毕业设计选题开始了</a>
-				</li>
 			</ul>
 
 		</div>
 	</div>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/javascript/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript">
+		function changeNum(n) {
+			var num = document.getElementById('num');
+			if (n == 0) {
+				num.innerHTML = "<s:text name='index.job.number'></s:text>";
+			} else {
+				num.innerHTML = "<s:text name='index.student.number'></s:text>";
+			}
+		}
+		$(
+		function() {
+			var old_data;
+			var index = 0;
+			$.ajax({
+				type : "POST",
+				//		dataType : "json",
+				url : "notice/seeAll",
+				//	timeout : 80000, //ajax请求超时时间80秒      
+				//			data : {
+				//			time : "100"
+				//	},//40秒后无论结果服务器都返回数据      
+				cache : false,
+				success : function(data) {
+					//从服务器得到数据，显示数据并继续查询
+					if(data)
+					{
+					var json = JSON.parse(data);
+					for(var i=0;i < json.length;i++)
+					{
+						$("#information ul").append("<li><a href='<%=request.getContextPath()%>/notice/see?notice_id="+json[i].notice_id+"'>"+ json[i].notice_title+"</a></li>");
+					}
+					}else
+					{
+						alert('连接服务器失败！');
+						$("#information ul").html("");
+					}
+					if(index == 0)
+					{
+						old_data = data;
+					}
+					if(old_data != data)
+					{
+						window.location.href="<%=request.getContextPath()%>/index";
+						old_data = data;
+					}
+					index++;
+				}
+			})
+			
+		
+		})
+	</script>
 </body>
 </html>

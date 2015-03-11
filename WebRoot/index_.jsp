@@ -10,6 +10,7 @@
 <!DOCTYPE html>
 <html>
 <head lang="en">
+<base href="<%= basePath %>">
 <meta charset="UTF-8">
 <title></title>
 <style>
