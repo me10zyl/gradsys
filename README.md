@@ -7,156 +7,195 @@ SQL DDL
 -----
 
 ```
-CREATE DATABASE  IF NOT EXISTS `graduationsystem` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `graduationsystem`;
--- MySQL dump 10.13  Distrib 5.6.13, for Win32 (x86)
---
--- Host: zyl-me.xicp.net    Database: graduationsystem
--- ------------------------------------------------------
--- Server version	5.5.40-0ubuntu0.12.04.1
+/*==============================================================*/
+/* DBMS name:      MySQL 5.0                                    */
+/* Created on:     2015/3/10 13:14:00                           */
+/*==============================================================*/
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+create database graduationsystem;
 
---
--- Table structure for table `duty`
---
+use graduationsystem;
+/*==============================================================*/
+/* DBMS name:      MySQL 5.0                                    */
+/* Created on:     2015/3/10 15:05:24                           */
+/*==============================================================*/
 
-DROP TABLE IF EXISTS `duty`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `duty` (
-  `subject_id` int(11) NOT NULL,
-  `teacher_id` int(11) NOT NULL,
-  PRIMARY KEY (`subject_id`,`teacher_id`),
-  KEY `FK_被负责` (`teacher_id`),
-  CONSTRAINT `FK_被负责` FOREIGN KEY (`teacher_id`) REFERENCES `teacher` (`teacher_id`),
-  CONSTRAINT `FK_负责` FOREIGN KEY (`subject_id`) REFERENCES `subject` (`subject_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Table structure for table `func`
---
+drop table if exists duty;
 
-DROP TABLE IF EXISTS `func`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `func` (
-  `func_id` int(11) NOT NULL AUTO_INCREMENT,
-  `func_name` varchar(50) NOT NULL,
-  PRIMARY KEY (`func_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+drop table if exists func;
 
---
--- Table structure for table `predom`
---
+drop table if exists notice;
 
-DROP TABLE IF EXISTS `predom`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `predom` (
-  `userGroup_id` int(11) NOT NULL,
-  `func_id` int(11) NOT NULL,
-  PRIMARY KEY (`userGroup_id`,`func_id`),
-  KEY `FK_有2` (`func_id`),
-  CONSTRAINT `FK_有` FOREIGN KEY (`userGroup_id`) REFERENCES `usergroup` (`userGroup_id`),
-  CONSTRAINT `FK_有2` FOREIGN KEY (`func_id`) REFERENCES `func` (`func_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+drop table if exists predom;
 
---
--- Table structure for table `student`
---
+drop table if exists student;
 
-DROP TABLE IF EXISTS `student`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `student` (
-  `student_id` int(11) NOT NULL AUTO_INCREMENT,
-  `subject_id` int(11) DEFAULT NULL,
-  `userGroup_id` int(11) NOT NULL,
-  `student_num` varchar(30) NOT NULL,
-  `student_name` varchar(12) DEFAULT NULL,
-  `student_gender` char(2) DEFAULT NULL,
-  `student_grade` char(4) DEFAULT NULL,
-  `student_major` varchar(50) DEFAULT NULL,
-  `student_telphone` varchar(11) DEFAULT NULL,
-  `student_password` varchar(12) DEFAULT NULL,
-  PRIMARY KEY (`student_id`),
-  UNIQUE KEY `num_UQ` (`student_num`),
-  KEY `FK_belong` (`userGroup_id`),
-  KEY `FK_select` (`subject_id`),
-  CONSTRAINT `FK_belong` FOREIGN KEY (`userGroup_id`) REFERENCES `usergroup` (`userGroup_id`),
-  CONSTRAINT `FK_select` FOREIGN KEY (`subject_id`) REFERENCES `subject` (`subject_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+drop table if exists subject;
 
--- Table structure for table `subject`
---
+drop table if exists teacher;
 
-DROP TABLE IF EXISTS `subject`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `subject` (
-  `subject_id` int(11) NOT NULL AUTO_INCREMENT,
-  `subject_title` varchar(100) NOT NULL,
-  `subject_description` varchar(10240) DEFAULT NULL,
-  PRIMARY KEY (`subject_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+drop table if exists userGroup;
 
---
--- Table structure for table `teacher`
---
+/*==============================================================*/
+/* Table: duty                                                  */
+/*==============================================================*/
+create table duty
+(
+   duty_id              int not null auto_increment,
+   subject_id           int not null,
+   teacher_id           int not null,
+   primary key (duty_id)
+);
 
-DROP TABLE IF EXISTS `teacher`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `teacher` (
-  `teacher_id` int(11) NOT NULL AUTO_INCREMENT,
-  `userGroup_id` int(11) NOT NULL,
-  `teacher_num` varchar(30) NOT NULL,
-  `teacher_name` varchar(20) DEFAULT NULL,
-  `teacher_gender` char(2) DEFAULT NULL,
-  `teacher_telephone` varchar(11) DEFAULT NULL,
-  `teacher_password` varchar(12) DEFAULT NULL,
-  PRIMARY KEY (`teacher_id`),
-  UNIQUE KEY `num_UQ` (`teacher_num`),
-  KEY `FK_belong2` (`userGroup_id`),
-  CONSTRAINT `FK_belong2` FOREIGN KEY (`userGroup_id`) REFERENCES `usergroup` (`userGroup_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+/*==============================================================*/
+/* Table: func                                                  */
+/*==============================================================*/
+create table func
+(
+   func_id              int not null auto_increment,
+   func_name            varchar(50) not null,
+   primary key (func_id)
+);
 
---
--- Table structure for table `usergroup`
---
+/*==============================================================*/
+/* Table: notice                                                */
+/*==============================================================*/
+create table notice
+(
+   noticce_id           int not null auto_increment,
+   teacher_id           int not null,
+   notice_title         varchar(50) not null,
+   notice_detail        varchar(700) not null,
+   primary key (noticce_id)
+);
 
-DROP TABLE IF EXISTS `usergroup`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `usergroup` (
-  `userGroup_id` int(11) NOT NULL AUTO_INCREMENT,
-  `userGroup_name` varchar(20) NOT NULL,
-  PRIMARY KEY (`userGroup_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+/*==============================================================*/
+/* Table: predom                                                */
+/*==============================================================*/
+create table predom
+(
+   predom_id            int not null auto_increment,
+   userGroup_id         int not null,
+   func_id              int not null,
+   primary key (predom_id)
+);
 
---
+/*==============================================================*/
+/* Table: student                                               */
+/*==============================================================*/
+create table student
+(
+   student_id           int not null auto_increment,
+   subject_id           int,
+   userGroup_id         int,
+   student_num          varchar(30) not null,
+   student_name         varchar(12) not null,
+   student_gender       char(2) not null,
+   student_grade        char(4) not null,
+   student_major        varchar(50) not null,
+   student_telphone     varchar(11) not null,
+   student_password     varchar(12) not null,
+   primary key (student_id)
+);
+
+/*==============================================================*/
+/* Index: uni_num                                               */
+/*==============================================================*/
+create unique index uni_num on student
+(
+   student_num
+);
+
+/*==============================================================*/
+/* Table: subject                                               */
+/*==============================================================*/
+create table subject
+(
+   subject_id           int not null auto_increment,
+   subject_title        varchar(100) not null,
+   subject_description  varchar(10240),
+   primary key (subject_id)
+);
+
+/*==============================================================*/
+/* Table: teacher                                               */
+/*==============================================================*/
+create table teacher
+(
+   teacher_id           int not null auto_increment,
+   userGroup_id         int,
+   teacher_num          varchar(30) not null,
+   teacher_name         varchar(20) not null,
+   teacher_gender       char(2) not null,
+   teacher_telephone    varchar(11) not null,
+   teacher_password     varchar(12) not null,
+   primary key (teacher_id)
+);
+
+/*==============================================================*/
+/* Index: uni_num                                               */
+/*==============================================================*/
+create unique index uni_num on teacher
+(
+   teacher_num
+);
+
+/*==============================================================*/
+/* Table: userGroup                                             */
+/*==============================================================*/
+create table userGroup
+(
+   userGroup_id         int not null auto_increment,
+   userGroup_name       varchar(20) not null,
+   primary key (userGroup_id)
+);
+
+alter table duty add constraint FK_被负责 foreign key (teacher_id)
+      references teacher (teacher_id) on delete restrict on update restrict;
+
+alter table duty add constraint FK_负责 foreign key (subject_id)
+      references subject (subject_id) on delete restrict on update restrict;
+
+alter table notice add constraint FK_release foreign key (teacher_id)
+      references teacher (teacher_id) on delete restrict on update restrict;
+
+alter table predom add constraint FK_有 foreign key (userGroup_id)
+      references userGroup (userGroup_id) on delete restrict on update restrict;
+
+alter table predom add constraint FK_有2 foreign key (func_id)
+      references func (func_id) on delete restrict on update restrict;
+
+alter table student add constraint FK_belong foreign key (userGroup_id)
+      references userGroup (userGroup_id) on delete restrict on update restrict;
+
+alter table student add constraint FK_select foreign key (subject_id)
+      references subject (subject_id) on delete restrict on update restrict;
+
+alter table teacher add constraint FK_belong2 foreign key (userGroup_id)
+      references userGroup (userGroup_id) on delete restrict on update restrict;
 ```
 
 Diagram
 ------
-**需求模型**:<br><img src="rm.png"><br>
+**需求**:
+----------------
+1.	老师选题
+	1.1	老师出题
+	1.2	__老师删题__
+	1.3	老师查题	
+	1.4	老师选题	
+2.	学生选题	
+	2.1	学生查题	
+	2.2	学生选题	
+3.	老师信息	
+	3.1	老师查看信息	(包括自己与其他人信息)
+	3.2	老师修改信息	
+4.	学生信息	
+	4.1	学生修改信息	(包括自己与其他人信息)
+	4.2	学生查看信息
+5.    __国际化(中英双语切换) __
+6.    __信息发布__
 
 **业务用例**:<br><img src="bcd.png"><br>
 
@@ -164,6 +203,6 @@ Diagram
 
 **活动图**:<br><img src="ad.png"><br>
 
-**概念数据模型**:<br><img src="cdm.png"><br>
+**概念数据模型**:<br>!["cdm"](cdm.png)<br>
 
-**物理数据模型**:<br><img src="pdm.png"><br>
+**物理数据模型**:<br>!["pdm"](pdm.png)<br>
