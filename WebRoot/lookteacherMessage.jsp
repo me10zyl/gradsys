@@ -3,6 +3,7 @@
 <%@page import="com.graduationsystem.db.teacher.Teacher"%>
 <%@page import="com.graduationsystem.db.teacher.TeacherDAO"%>
 <%@page contentType="text/html; charset=utf-8"%>
+<%@taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html>
 <head lang="en">

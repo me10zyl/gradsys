@@ -153,7 +153,9 @@ body {
 		String userType = (String) session.getAttribute("userType");
 		Teacher teacher_me = (Teacher)session.getAttribute("teacher");
 		int teacher_id_set = (Integer)request.getAttribute("teacher_id_set");
-		int teacher_id = teacher_me.getTeacher_id();
+		int teacher_id = 0;
+		if(teacher_me != null)
+			teacher_id = teacher_me.getTeacher_id();
 	%>
 	<div id="Bodycontainer">
 		<div id="Curpage">
