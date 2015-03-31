@@ -4,39 +4,69 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import com.graduationsystem.db.DBMain;
 import java.util.ArrayList;
-import com.graduationsystem.db.teacher.*;
-
 import com.graduationsystem.db.duty.*;
 import com.graduationsystem.db.student.*;
+import com.graduationsystem.db.teacher.Teacher;
+import com.graduationsystem.db.teacher.TeacherDAO;
 
 public class SubjectDAO extends DBMain<Subject> {
 	public void add(Subject subject) throws ClassNotFoundException, SQLException {
-		String sql = "insert into subject(teacher_id,subject_title,subject_description) values (?,?,?)";
+		String sql = "insert into subject(subject_title,subject_description) values (?,?)";
 		pst = this.getPreparedStatement(sql);
-		pst.setInt(1, subject.getTeacher_id());
-		pst.setString(2, subject.getSubject_title());
-		pst.setString(3, subject.getSubject_description());
+		pst.setString(1, subject.getSubject_title());
+		pst.setString(2, subject.getSubject_description());
 		pst.executeUpdate();
 		realese();
 	}
 
 	public void delete(int id) throws ClassNotFoundException, SQLException {
-		String sql = "delete from subject where subject_id=?";
-		pst = this.getPreparedStatement(sql);
+		String sql1 = "update student set subject_id = null where subject_id=?";
+		String sql2 = "delete from duty where subject_id=?";
+		String sql3 = "delete from subject where subject_id=?";
+		pst = this.getPreparedStatement(sql1);
+		pst.setInt(1, id);
+		pst.executeUpdate();
+		pst = this.getPreparedStatement(sql2);
+		pst.setInt(1, id);
+		pst.executeUpdate();
+		pst = this.getPreparedStatement(sql3);
 		pst.setInt(1, id);
 		pst.executeUpdate();
 		realese();
 	}
 
 	public void modify(Subject newSubject) throws ClassNotFoundException, SQLException {
-		String sql = "update subject set teacher_id=?,subject_title=?,subject_description=? where subject_id=?";
+		String sql = "update subject set subject_title=?,subject_description=? where subject_id=?";
 		pst = this.getPreparedStatement(sql);
-		pst.setInt(1, newSubject.getTeacher_id());
-		pst.setString(2, newSubject.getSubject_title());
-		pst.setString(3, newSubject.getSubject_description());
-		pst.setInt(4, newSubject.getSubject_id());
+		pst.setString(1, newSubject.getSubject_title());
+		pst.setString(2, newSubject.getSubject_description());
+		pst.setInt(3, newSubject.getSubject_id());
 		pst.executeUpdate();
 		realese();
+	}
+
+	// public ArrayList<Teacher> getDutyTeacherBySubjectId(int id) throws
+	// ClassNotFoundException, SQLException {
+	// TeacherDAO teacherDAO = new TeacherDAO();
+	// Subject subject_detail = getDetailById(id);
+	// ArrayList<Duty> arr_duty = subject_detail.getDuty();
+	// ArrayList<Teacher> arr_teacher = new ArrayList<Teacher>();
+	// for (Duty duty : arr_duty) {
+	// arr_teacher.add(teacherDAO.getById(duty.getTeacher_id()));
+	// }
+	// return arr_teacher;
+	// }
+	public ArrayList<Teacher> getDutyTeachersBySubjectId(int id) throws ClassNotFoundException, SQLException {
+		String sql = "select * from teacher where teacher_id in (select teacher_id from duty where subject_id = ?)";
+		pst = this.getPreparedStatement(sql);
+		pst.setInt(1, id);
+		rst = pst.executeQuery();
+		ArrayList<Teacher> teachers = new ArrayList<Teacher>();
+		while (rst.next()) {
+			teachers.add(new TeacherDAO().assemble(rst));
+		}
+		realese();
+		return teachers;
 	}
 
 	public ArrayList<Subject> getAll() throws ClassNotFoundException, SQLException {
@@ -65,7 +95,7 @@ public class SubjectDAO extends DBMain<Subject> {
 	}
 
 	public Subject assemble(ResultSet rst) throws SQLException {
-		Subject subject = new Subject(rst.getInt("subject_id"), rst.getInt("teacher_id"), rst.getString("subject_title"), rst.getString("subject_description"));
+		Subject subject = new Subject(rst.getInt("subject_id"), rst.getString("subject_title"), rst.getString("subject_description"));
 		return subject;
 	}
 
@@ -73,7 +103,6 @@ public class SubjectDAO extends DBMain<Subject> {
 		Subject subject = getById(id);
 		setExportKeysMappingObject(subject, "duty", "subject_id", id);
 		setExportKeysMappingObject(subject, "student", "subject_id", id);
-		setImportKeysMappingObject(subject, "teacher", "teacher_id", id);
 		this.realese();
 		return subject;
 	}
@@ -85,9 +114,6 @@ public class SubjectDAO extends DBMain<Subject> {
 		rst = pst.executeQuery();
 		// ---------������---------------------
 		if (rst.next()) {
-			if (tableName.equals("teacher")) {
-				subject.setTeacher(new TeacherDAO().assemble(rst));
-			}
 		}
 	}
 
@@ -103,18 +129,5 @@ public class SubjectDAO extends DBMain<Subject> {
 				subject.getStudent().add(new StudentDAO().assemble(rst));
 			}
 		}
-	}
-
-	public ArrayList<Teacher> getDutyTeachersBySubjectId(int id) throws ClassNotFoundException, SQLException {
-		String sql = "select * from teacher where teacher_id in (select teacher_id from duty where subject_id = ?)";
-		pst = this.getPreparedStatement(sql);
-		pst.setInt(1, id);
-		rst = pst.executeQuery();
-		ArrayList<Teacher> teachers = new ArrayList<Teacher>();
-		while (rst.next()) {
-			teachers.add(new TeacherDAO().assemble(rst));
-		}
-		realese();
-		return teachers;
 	}
 }

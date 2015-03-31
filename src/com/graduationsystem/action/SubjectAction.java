@@ -18,6 +18,7 @@ import com.graduationsystem.db.student.StudentDAO;
 import com.graduationsystem.db.subject.Subject;
 import com.graduationsystem.db.subject.SubjectDAO;
 import com.graduationsystem.db.teacher.Teacher;
+import com.graduationsystem.db.teacher.TeacherDAO;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.util.ValueStack;
@@ -86,7 +87,8 @@ public class SubjectAction extends ActionSupport {
 
 	public String modify() throws ClassNotFoundException, SQLException {
 		if (subject_id != null) {
-			Subject subject = new Subject(Integer.parseInt(subject_id), subject_title, subject_description);
+			int subject_id_int = Integer.parseInt(subject_id);
+			Subject subject = new Subject(subject_id_int,subjectDAO.getById(subject_id_int).getTeacher_id(), subject_title, subject_description);
 			subjectDAO.modify(subject);
 			request.setAttribute("subject", subject);
 			return SUBJECT_DETAIL;
@@ -131,7 +133,11 @@ public class SubjectAction extends ActionSupport {
 	public String seeSubjectDetail() throws NumberFormatException, ClassNotFoundException, SQLException {
 		if (subject_id != null) {
 			Subject subject = subjectDAO.getById(Integer.parseInt(subject_id));
+			TeacherDAO teacherDAO = new TeacherDAO();
+			Teacher teacher_set = teacherDAO.getById(subject.getTeacher_id());
 			request.setAttribute("subject", subject);
+			request.setAttribute("teacher_id_set", teacher_set.getTeacher_id());
+			request.setAttribute("teacher_set", teacher_set.getTeacher_name());
 			return SUBJECT_DETAIL;
 		}
 		return ERROR;
@@ -140,6 +146,7 @@ public class SubjectAction extends ActionSupport {
 	public String set() throws ClassNotFoundException, SQLException {
 		Teacher teacher = (Teacher) session.getAttribute("teacher");
 		Subject subject = new Subject();
+		subject.setTeacher_id(teacher.getTeacher_id());
 		subject.setSubject_title(subject_title);
 		subject.setSubject_description(subject_detail);
 		subjectDAO.add(subject);

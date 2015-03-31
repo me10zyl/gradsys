@@ -1,3 +1,4 @@
+<%@page import="com.graduationsystem.db.teacher.TeacherDAO"%>
 <%@page import="com.graduationsystem.db.teacher.Teacher"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.graduationsystem.db.subject.SubjectDAO"%>
@@ -150,6 +151,9 @@ body {
 		Subject subject = (Subject) request.getAttribute("subject");
 		ArrayList<Teacher> arr_teacher = subjectDAO.getDutyTeachersBySubjectId(subject.getSubject_id());
 		String userType = (String) session.getAttribute("userType");
+		Teacher teacher_me = (Teacher)session.getAttribute("teacher");
+		int teacher_id_set = (Integer)request.getAttribute("teacher_id_set");
+		int teacher_id = teacher_me.getTeacher_id();
 	%>
 	<div id="Bodycontainer">
 		<div id="Curpage">
@@ -170,7 +174,7 @@ body {
 							name='subject_title'></td>
 						<td align="left">
 							<%
-								if (userType.equals("teacher")) {
+								if (userType.equals("teacher") && teacher_id_set == teacher_id) {
 							%> <input type="button"
 							value="<s:text name='profile.modify'></s:text>" title="点击<s:text name='profile.modify'></s:text>" style="background-color: #FF7415"
 							style="font-color:red;" onclick="modify(0)">
@@ -181,6 +185,14 @@ body {
 					</tr>
 					<tr>
 						<td align="right"><s:text name='subject.set.teacher'></</s:text></td>
+						<td align="left" id="description">
+							<%
+								out.println("<a href='"+request.getContextPath()+"/user/seeOtherTeacher?teacher_id=" + subject.getTeacher_id() + "'>" + request.getAttribute("teacher_set") + "</a>");
+							%>
+						</td>
+					</tr>
+					<tr>
+						<td align="right"><s:text name='subject.duty.teacher'></</s:text></td>
 						<td align="left" id="description">
 							<%
 								for (Teacher teacher : arr_teacher) {
@@ -200,7 +212,7 @@ body {
 							value="<%=subject.getSubject_id()%>">
 						</td>
 						<%
-							if (userType.equals("teacher")) {
+							if (userType.equals("teacher") && teacher_id_set == teacher_id) {
 						%>
 						<td align="center"><input type="submit" value="<s:text name='subject.detail.save'></s:text>"
 							title="点击修改" style="background-color: royalblue"

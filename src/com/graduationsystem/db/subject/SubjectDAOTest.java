@@ -1,6 +1,8 @@
 package com.graduationsystem.db.subject;
 
 import java.util.ArrayList;
+import com.graduationsystem.db.teacher.*;
+
 import com.graduationsystem.db.duty.*;
 import com.graduationsystem.db.student.*;
 
@@ -27,7 +29,7 @@ public class SubjectDAOTest {
 			System.out.println("deleteTest:");
 			// deleteTest(1);
 			System.out.println("modifyTest:");
-			//Subject subject = new Subject(1,"subject_title","subject_description");
+			//Subject subject = new Subject(1,1,"subject_title","subject_description");
 			//modifyTest(subject);
 			System.out.println("getDetailByIdTest:");
 			//getDetailByIdTest(1);
@@ -53,6 +55,7 @@ public class SubjectDAOTest {
 
 	private static void addTest() throws ClassNotFoundException, SQLException {
 		Subject subject = new Subject();
+		subject.setTeacher_id(1);
 		subject.setSubject_title("subject_title");
 		subject.setSubject_description("subject_description");
 

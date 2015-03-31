@@ -38,7 +38,7 @@ public abstract class DBMain<T>
 		//------加载数据库驱动---------------------
 		Class.forName("com.mysql.jdbc.Driver");
 		//------获得数据库连接----------------------
-		 con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:10000/graduationsystem", "root", "");
+		 con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/graduationsystem", "root", "");
 		//-------封装SQL语句---------------------
 		//String sql = "select * from users";
 		 pst =  con.prepareStatement(sql,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY,ResultSet.HOLD_CURSORS_OVER_COMMIT);

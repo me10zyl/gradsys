@@ -145,7 +145,8 @@ public class SubjectServlet extends HttpServlet {
 				String subject_title = request.getParameter("subject_title");
 				String subject_description = request.getParameter("subject_description");
 				if (subject_id != null) {
-					Subject subject = new Subject(Integer.parseInt(subject_id), subject_title, subject_description);
+					int subject_id_int = Integer.parseInt(subject_id);
+					Subject subject = new Subject(subject_id_int,subjectDAO.getById(subject_id_int).getTeacher_id(), subject_title, subject_description);
 					subjectDAO.modify(subject);
 					request.setAttribute("subject", subject);
 					request.getRequestDispatcher("/subjectMessage.jsp").forward(request, response);
