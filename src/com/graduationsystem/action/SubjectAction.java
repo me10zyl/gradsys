@@ -157,8 +157,9 @@ public class SubjectAction extends ActionSupport {
 		duty.setSubject_id(subject.getSubject_id());
 		duty.setTeacher_id(teacher.getTeacher_id());
 		dutyDAO.add(duty);
-		ActionContext.getContext().getValueStack().setValue("subject_id", subject.getSubject_id());
-		return ACTION_SEE_SUBEJECT_DETAIL;
+//		ActionContext.getContext().getValueStack().setValue("subject_id", subject.getSubject_id());
+//		return ACTION_SEE_SUBEJECT_DETAIL;
+		return ACTION_SEE_SUBJECT;
 	}
 	
 	public String seeSetSubject()
