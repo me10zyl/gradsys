@@ -1,8 +1,8 @@
 package com.graduationsystem.db.subject;
 
 import java.util.ArrayList;
-import com.graduationsystem.db.teacher.*;
 
+import com.graduationsystem.db.teacher.*;
 import com.graduationsystem.db.duty.*;
 import com.graduationsystem.db.student.*;
 
@@ -103,4 +103,10 @@ public class Subject
 	{
 		return subject_id + "\t" + teacher_id + "\t" + subject_title + "\t" + subject_description + "\t" + (this.teacher == null ? "" : "\t" + teacher) + (this.duty.size() == 0? "" : "\t" + duty) + (this.student.size() == 0? "" : "\t" + student);
 	}
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		return this.subject_id == ((Subject)obj).getSubject_id();
+	}
+	
 }

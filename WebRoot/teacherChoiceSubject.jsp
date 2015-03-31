@@ -228,7 +228,7 @@ body {
 							%>
 						</td>
 						<td align="center"><input type="checkbox" name="subject_id"
-							value="<%=subject.getSubject_id()%>"<%=(arr_duty_subject.contains(subject)) ? "checked='checked'" : ""%>" >
+							value="<%=subject.getSubject_id()%>"<%=(arr_duty_subject.contains(subject)) ? "checked='checked'" : ""%> >
 						</td>
 					</tr>
 					<%

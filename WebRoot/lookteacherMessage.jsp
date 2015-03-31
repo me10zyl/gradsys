@@ -160,7 +160,7 @@ body {
 			<div class="personMessageLogo"><s:text name='profile.profile'></s:text></div>
 			<table class="showMessageTab">
 				<tr>
-					<td align="right">工号：</td>
+					<td align="right"><s:text name='profile.job.number'></s:text></td>
 					<td align="left"><%=teacher.getTeacher_num()%></td>
 				</tr>
 				<tr>
