@@ -7,6 +7,7 @@
 <%@page import="com.graduationsystem.db.student.Student"%>
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -168,14 +169,21 @@ p{
 				style="text-decoration:none; color:#999;" target="mainFrame"><s:text name='profile.homepage'></s:text> </a>
 			</li> <a class="Curpagea">><s:text name='notice.title'></s:text></a>
 		</div>
+	<form action="<%=request.getContextPath() %>/notice/delete" method="post">
+		<input type="hidden" value="${notice.noticce_id}" name="notice_id">
 		<div id="showMessageBox">
 			<div class="personMessageLogo"><s:text name='notice.title'></s:text></div>
 			<h2><div class="title">${notice.notice_title}</div></h2>
 			<p>${notice.notice_detail}
 			<div class="teacher"><s:text name='notice.teacher'></s:text>${notice_teacher}
 			</div>
+			<s:if test="#session.teacher != null && #request.notice_teacher_id == #session.teacher.teacher_id">
+				<div>
+					<input type="submit" value='<s:text name="notice.delete"></s:text>'>
+				</div>
+			</s:if>
 		</div>
-
+	</form>
 	</div>
 </body>
 </html>

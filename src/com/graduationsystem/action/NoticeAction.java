@@ -56,8 +56,14 @@ public class NoticeAction implements SessionAware, RequestAware {
 	public String see() throws ClassNotFoundException, SQLException {
 		Notice notice = noticeDAO.getDetailById(notice_id);
 		request.put("notice", notice);
+		request.put("notice_teacher_id", notice.getTeacher().getTeacher_id());
 		request.put("notice_teacher", notice.getTeacher().getTeacher_name());
 		return NOTICE_DETAIL;
+	}
+
+	public String delete() throws ClassNotFoundException, SQLException {
+		noticeDAO.delete(notice_id);
+		return UserAction.INDEX;
 	}
 
 	public String seeAll() {
