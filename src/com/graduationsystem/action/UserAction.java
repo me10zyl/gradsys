@@ -120,7 +120,7 @@ public class UserAction extends ActionSupport {
 		return teacher_password;
 	}
 
-	public String getTeacher_telephone() {
+	public String getTeacher_telephone() {	
 		return teacher_telephone;
 	}
 
