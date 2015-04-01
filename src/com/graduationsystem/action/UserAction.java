@@ -31,7 +31,7 @@ public class UserAction extends ActionSupport {
 	private String teacher_num;
 	private String teacher_name;
 	private String teacher_gender;
-	private String teacher_telphone;
+	private String teacher_telephone;
 	private String teacher_password;
 	// not params
 	private TeacherDAO teacherDAO = new TeacherDAO();
@@ -120,8 +120,8 @@ public class UserAction extends ActionSupport {
 		return teacher_password;
 	}
 
-	public String getTeacher_telphone() {
-		return teacher_telphone;
+	public String getTeacher_telephone() {
+		return teacher_telephone;
 	}
 
 	public TeacherDAO getTeacherDAO() {
@@ -198,7 +198,7 @@ public class UserAction extends ActionSupport {
 			teacher.setTeacher_num(teacher_num);
 			teacher.setTeacher_name(teacher_name);
 			teacher.setTeacher_gender(teacher_gender);
-			teacher.setTeacher_telephone(teacher_telphone);
+			teacher.setTeacher_telephone(teacher_telephone);
 			teacher.setTeacher_password(teacher_password);
 			teacherDAO.modify(teacher);
 			return TEACHER_PROFILE;
@@ -306,8 +306,8 @@ public class UserAction extends ActionSupport {
 		this.teacher_password = teacher_password;
 	}
 
-	public void setTeacher_telphone(String teacher_telphone) {
-		this.teacher_telphone = teacher_telphone;
+	public void setTeacher_telephone(String teacher_telphone) {
+		this.teacher_telephone = teacher_telphone;
 	}
 
 	public void setTeacherDAO(TeacherDAO teacherDAO) {

@@ -153,8 +153,8 @@ body {
 	<div id="Bodycontainer">
 		<div id="Curpage">
 			<a class="Curpagea"><s:text name='profile.current.position'></s:text></a> <a href="<%=request.getContextPath()%>/index"
-				style="text-decoration:none; color:#999;"> <s:text name='profile.homepage'></s:text> </a>
-			</li> <a class="Curpagea">>老师个人信息</a>
+				style="text-decoration:none; color:#999;"> <s:text name='profile.profile'></s:text> </a>
+			</li> <a class="Curpagea">><s:text name='profile.teacher.profile'></s:text></a>
 		</div>
 		<div id="showMessageBox">
 			<div class="personMessageLogo"><s:text name='profile.profile'></s:text></div>
