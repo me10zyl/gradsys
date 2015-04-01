@@ -1,6 +1,7 @@
 package com.graduationsystem.db.student;
 
 import java.util.ArrayList;
+
 import com.graduationsystem.db.subject.*;
 import com.graduationsystem.db.usergroup.*;
 
@@ -161,5 +162,11 @@ public class Student
 	public String toString()
 	{
 		return student_id + "\t" + subject_id + "\t" + userGroup_id + "\t" + student_num + "\t" + student_name + "\t" + student_gender + "\t" + student_grade + "\t" + student_major + "\t" + student_telphone + "\t" + student_password + "\t" + (this.subject == null ? "" : "\t" + subject) + (this.usergroup == null ? "" : "\t" + usergroup);
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		return this.student_id == ((Student)obj).getStudent_id();
 	}
 }

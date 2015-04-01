@@ -10,9 +10,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.graduationsystem.db.notice.Notice;
 import com.graduationsystem.db.notice.NoticeDAO;
+import com.graduationsystem.db.student.Student;
 
 /**
  * Servlet implementation class NoticeAjaxServlet
@@ -50,19 +52,27 @@ public class NoticeAjaxServlet extends HttpServlet {
 			response.setContentType("text/plain");
 			response.setCharacterEncoding("utf-8");
 			PrintWriter pw = response.getWriter();
-//			response.setHeader("Content-Type", "text/plain;charset=utf-8");
+			// response.setHeader("Content-Type", "text/plain;charset=utf-8");
 			pw.print("[");
-			for(int i = 0;i < notices.size();i++)
-			{
-				Notice notice = notices.get(i);
-				String json = String.format("{\"notice_id\":%s,\"notice_title\":\"%s\",\"notice_detail\":\"%s\"},",notice.getNoticce_id(),notice.getNotice_title(),notice.getNotice_detail());
-				if(i == notices.size() - 1)
-				{
-					json = json.substring(0,json.length() - 1);
-				}
-				pw.print(json);
+			HttpSession session = request.getSession();
+			String userType = (String) session.getAttribute("userType");
+			NoticeDAO noticeDAO = new NoticeDAO();
+			ArrayList<Student> relatedStudents = null;
+			Student student = null;
+			String ajaxResponse = "";
+			if (userType != null && "student".equals(userType)) {
+				student = (Student) session.getAttribute("student");
 			}
-			pw.print("]");
+			for (int i = 0; i < notices.size(); i++) {
+				Notice notice = notices.get(i);
+				String json = String.format("{\"notice_id\":%s,\"notice_title\":\"%s\",\"notice_detail\":\"%s\"},", notice.getNoticce_id(), notice.getNotice_title(), notice.getNotice_detail());
+				relatedStudents = noticeDAO.getRelatedStudentsByNoticeId(notice.getNoticce_id());
+				if (relatedStudents == null || student == null || relatedStudents.contains(student)) {//relatedStudents 判断是否登陆 student == null判断是否是老师
+					ajaxResponse += json;
+				}
+			}
+			ajaxResponse = ajaxResponse.substring(0, ajaxResponse.length() - 1 >= 0 ? ajaxResponse.length() - 1 : 0);
+			pw.print(ajaxResponse + "]");
 			pw.flush();
 			pw.close();
 		} catch (ClassNotFoundException e) {
@@ -72,6 +82,5 @@ public class NoticeAjaxServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
 }

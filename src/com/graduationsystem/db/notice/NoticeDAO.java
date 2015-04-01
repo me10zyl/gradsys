@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.graduationsystem.db.DBMain;
+import com.graduationsystem.db.student.Student;
+import com.graduationsystem.db.student.StudentDAO;
 import com.graduationsystem.db.teacher.TeacherDAO;
 
 public class NoticeDAO extends DBMain<Notice>
@@ -107,5 +109,20 @@ public class NoticeDAO extends DBMain<Notice>
 		while (rst.next()) {
 			
 		}
+	}
+	
+	public ArrayList<Student> getRelatedStudentsByNoticeId(int noticce_id) throws ClassNotFoundException, SQLException
+	{
+		String sql = "select * from student where subject_id in (select subject_id from duty where teacher_id  = (select teacher_id from notice where noticce_id = ?))";
+		pst = this.getPreparedStatement(sql);
+		pst.setInt(1, noticce_id);
+		rst = pst.executeQuery();
+		ArrayList<Student> students = new ArrayList<Student>();
+		while (rst.next())
+		{
+			students.add(new StudentDAO().assemble(rst));
+		}
+		realese();
+		return students;
 	}
 }
