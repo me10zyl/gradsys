@@ -1,4 +1,3 @@
-<%@page contentType="text/html; charset=utf-8"%>
 <%@taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html>
 <html>
@@ -86,7 +85,7 @@ body {
 		</div>
 		<div id="nav">
 			<ul>
-				<li><a href="index_.jsp" target="mainFrame"><s:text
+				<li><a href="<%=request.getContextPath()%>/index"><s:text
 							name="header.homepage"></s:text></a></li>
 				<li><a href="<%=request.getContextPath()%>/user/seeSelf"
 					target="mainFrame"><s:text name="header.profile"></s:text></a></li>

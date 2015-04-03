@@ -22,6 +22,7 @@ body {
 </style>
 </head>
 <body>
+<%@include file="header.jsp" %>
 	<div>
 		<h1>囧,服务器出错了...</h1>
 		你遭遇了<span class="err"> <s:property value="exception.message" /></span>错误...

@@ -163,6 +163,7 @@ p{
 </head>
 
 <body>
+<%@include file="header.jsp" %>
 	<div id="Bodycontainer">
 		<div id="Curpage">
 			<a class="Curpagea"><s:text name='profile.current.position'></s:text></a> <a href="<%=request.getContextPath()%>/index"

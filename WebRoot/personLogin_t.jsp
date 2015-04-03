@@ -139,6 +139,7 @@ body {
 </head>
 
 <body>
+	<%@include file="header.jsp"%>
 	<div id="Bodycontainer">
 		<%
 			String loginState = (String) session.getAttribute("loginState");
@@ -147,10 +148,12 @@ body {
 			Teacher teacher = user instanceof Teacher ? (Teacher) user : null;
 		%>
 		<div id="Curpage">
-			<p><%
+			<p>
+				<%
 					if (teacher != null)
 						out.print(teacher.getTeacher_name());
-				%><s:text name="login.teacher.welcome"></s:text></p>
+				%><s:text name="login.teacher.welcome"></s:text>
+			</p>
 		</div>
 		<div id="userMessage">
 			<img src="<%=request.getContextPath()%>/images/login1.jpg">
@@ -160,7 +163,8 @@ body {
 			<!-- success -->
 			<table class="loginTab">
 				<tr>
-					<td align="right" width="60"><s:text name="login.teacher.job.number"></s:text></td>
+					<td align="right" width="60"><s:text
+							name="login.teacher.job.number"></s:text></td>
 					<td align="left"><%=teacher.getTeacher_num()%></td>
 				</tr>
 				<tr>
@@ -168,20 +172,30 @@ body {
 					<td align="left"><%=teacher.getTeacher_name()%></td>
 				</tr>
 				<tr align="center">
-					<td align="right" width="60"><input type="submit" value="<s:text name='login.logout'></s:text>"
-						title="<s:text name='login.click.to.logout'></s:text>" style="background-color: royalblue" onClick="javascript:void(location.href='<%=request.getContextPath()%>/user/logout')">
+					<td align="right" width="60"><input type="submit"
+						value="<s:text name='login.logout'></s:text>"
+						title="<s:text name='login.click.to.logout'></s:text>"
+						style="background-color: royalblue"
+						onClick="javascript:void(location.href='<%=request.getContextPath()%>/user/logout')">
 					</td>
-					<td align="right" width="60"><input type="submit" value="<s:text name='login.teacher.set'></s:text>"
-						title="<s:text name='login.click.to.set'></s:text>" style="background-color: royalblue" onClick="javascript:void(location.href='<%=request.getContextPath()%>/subject/seeSetSubject')" style="font-color:red;">
-					</td>
-					<td align="right" width="60"><input type="submit" value="<s:text name='login.set.notice'></s:text>"
-						title="<s:text name='login.set.notice'></s:text>" style="background-color: royalblue" onClick="javascript:void(location.href='<%=request.getContextPath()%>/notice/seeAdd')" style="font-color:red;">
-					</td>
+					<td align="right" width="60"><input type="submit"
+						value="<s:text name='login.teacher.set'></s:text>"
+						title="<s:text name='login.click.to.set'></s:text>"
+						style="background-color: royalblue"
+						onClick="javascript:void(location.href='<%=request.getContextPath()%>/subject/seeSetSubject')"
+						style="font-color:red;"></td>
+					<td align="right" width="60"><input type="submit"
+						value="<s:text name='login.set.notice'></s:text>"
+						title="<s:text name='login.set.notice'></s:text>"
+						style="background-color: royalblue"
+						onClick="javascript:void(location.href='<%=request.getContextPath()%>/notice/seeAdd')"
+						style="font-color:red;"></td>
 				</tr>
 			</table>
-			<p style="margin-left:150px;">
+			<p style="margin-left: 150px;">
 				<a href="<%=request.getContextPath()%>/subject/seeSubject"
-					style="color: #0099FF;font-size: 12px"><s:text name="login.teacher.subject.responsibility"></s:text>>></a>
+					style="color: #0099FF; font-size: 12px"><s:text
+						name="login.teacher.subject.responsibility"></s:text>>></a>
 			</p>
 			<%
 				} else if (loginState.equals("notexist")) {
@@ -194,8 +208,10 @@ body {
 					</td>
 				</tr>
 				<tr align="center">
-					<td align="right" width="60"><b><a href="<%=request.getContextPath()%>/index"
-							target="mainFrame"><s:text name='login.click'></s:text></a> </b><s:text name='login.login.again'></s:text></td>
+					<td align="right" width="60"><b><a
+							href="<%=request.getContextPath()%>/index" target="mainFrame"><s:text
+									name='login.click'></s:text></a> </b>
+					<s:text name='login.login.again'></s:text></td>
 				</tr>
 			</table>
 			<%
@@ -205,12 +221,13 @@ body {
 			<table class="loginTab">
 				<tr>
 					<td align="right" width="60"><font color='red' size="+1"
-						face="幼圆"><s:text name='login.password.wrong'></s:text></font>
-					</td>
+						face="幼圆"><s:text name='login.password.wrong'></s:text></font></td>
 				</tr>
 				<tr align="center">
-					<td align="right" width="60"><b><a href="<%=request.getContextPath()%>/index"
-							target="mainFrame"><s:text name='login.click'></s:text></a> </b><s:text name='login.login.again'></s:text></td>
+					<td align="right" width="60"><b><a
+							href="<%=request.getContextPath()%>/index" target="mainFrame"><s:text
+									name='login.click'></s:text></a> </b>
+					<s:text name='login.login.again'></s:text></td>
 				</tr>
 			</table>
 			<%
@@ -225,7 +242,8 @@ body {
 
 		</div>
 	</div>
-	<script type="text/javascript" src="<%=request.getContextPath()%>/javascript/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript"
+		src="<%=request.getContextPath()%>/javascript/jquery-1.11.1.min.js"></script>
 	<script type="text/javascript">
 		function changeNum(n) {
 			var num = document.getElementById('num');
@@ -268,14 +286,14 @@ body {
 					}
 					if(old_data != data)
 					{
-						window.location.href="<%=request.getContextPath()%>/index";
-						old_data = data;
-					}
-					index++;
-				}
-			})
-			
-		
+						window.location.href="<%=request.getContextPath()%>
+		/index";
+								old_data = data;
+							}
+							index++;
+						}
+					})
+
 		})
 	</script>
 </body>

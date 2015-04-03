@@ -13,7 +13,6 @@
 
 	<package name="default" namespace="/" extends="struts-default">
 
-		<!-- <default-action-ref name="index" /> -->
 		<interceptors>
 			<interceptor name="exceptionToast"
 				class="com.graduationsystem.interceptors.ExceptionInterceptor" />
@@ -25,11 +24,10 @@
 
 		<default-interceptor-ref name="zylStack">
 		</default-interceptor-ref>
-
 		<global-results>
 			<result name="error">/error.jsp</result>
 			<result name="index">
-				/index_.jsp
+				/index.jsp
 			</result>
 		</global-results>
 
@@ -38,7 +36,7 @@
 				result="error" />
 		</global-exception-mappings>
 		<action name="index" class="com.graduationsystem.action.IndexAction">
-			<result>/index_.jsp</result>
+			<result>/index.jsp</result>
 			<result name="student_logined">
 				/personLogin.jsp
 			</result>
@@ -50,7 +48,7 @@
 			<result>/header.jsp</result>
 		</action>
 		<action name="i18n" class="com.graduationsystem.action.I18nAction">
-			<result type="chain">header</result>
+			<result type="chain">index</result>
 		</action>
 		<action name="i18najax" class="com.graduationsystem.action.I18nAjaxAction">
 			<result>/i18najaxs</result>

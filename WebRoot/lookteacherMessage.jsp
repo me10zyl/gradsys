@@ -145,6 +145,7 @@ body {
 </head>
 
 <body>
+<%@include file="header.jsp" %>
 	<%
 		Teacher teacher = (Teacher) request.getAttribute("teacher");
 		TeacherDAO teacherDAO = new TeacherDAO();

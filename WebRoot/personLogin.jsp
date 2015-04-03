@@ -136,6 +136,7 @@ body {
 </head>
 
 <body>
+<%@include file="header.jsp" %>
 	<div id="Bodycontainer">
 		<%
 			String loginState = (String) session.getAttribute("loginState");

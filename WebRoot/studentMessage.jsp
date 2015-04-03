@@ -146,6 +146,7 @@ body {
 </head>
 
 <body>
+<%@include file="header.jsp" %>
 	<%
 		SubjectDAO subjectDAO = new SubjectDAO();
 		StudentDAO studentDAO = new StudentDAO();

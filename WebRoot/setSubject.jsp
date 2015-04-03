@@ -141,6 +141,7 @@ body {
 </head>
 
 <body>
+<%@include file="header.jsp" %>
 	<div id="Bodycontainer">
 		<div id="Curpage">
 			<a class="Curpagea"><s:text name='subject.current.position'></s:text></a> <a href="<%=request.getContextPath()%>/index_.jsp"

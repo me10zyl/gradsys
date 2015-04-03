@@ -155,6 +155,7 @@ body {
 </head>
 
 <body>
+<%@include file="header.jsp" %>
 
 	<div id="Bodycontainer">
 		<div id="Curpage">
