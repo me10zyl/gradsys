@@ -29,5 +29,6 @@ body {
 	</div>
 	<div><h2>请稍后再试</h2></div>
 	<s:debug></s:debug>
+<%@include file="footer.jsp"%>
 </body>
 </html>

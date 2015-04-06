@@ -74,8 +74,8 @@
     .chToeng {
         /*border: 1px solid blueviolet;*/
         position: absolute;
-        bottom: 0px;
-        right: 0px;
+        bottom: 20px;
+        right: 20px;
         /*float: right;*/
         /*margin: 40px 50px;*/
     }
@@ -363,5 +363,6 @@
 			},10000);
 		})
 	</script>
+<%@include file="footer.jsp"%>
 </body>
 </html>

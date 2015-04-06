@@ -31,19 +31,19 @@ body {
 	height: 90px;
 }
 
-#nav {
+#nav-nouse {
 	height: 30px;
 	width: 799px;
 	background-color: #0187c4;
 	border: 1px solid #d2d6d8;
 }
 
-#nav ul {
+#nav-nouse ul {
 	list-style: none;
 	margin-top: 2px;
 }
 
-#nav ul li {
+#nav-nouse ul li {
 	margin-left: 50px;
 	float: left;
 	width: 90px;
@@ -52,35 +52,35 @@ body {
 	padding: 0 10px;
 }
 
-#nav a {
+#nav-nouse a {
 	display: block;
 	color: white;
 	text-decoration: none;
 	padding: 0 10px;
 }
 
-#nav a:hover {
+#nav-nouse a:hover {
 	background-color: darkseagreen;
 }
 
-#nav  ul li ul {
+#nav-nouse  ul li ul {
 	top: 120px;
 	display: none;
 	background-color: indianred;
 }
 
-#nav  ul li ul li {
+#nav-nouse  ul li ul li {
 	float: none;
 	background-color: cornflowerblue;
 	margin-left: -40px;
 	padding: 0 0;
 }
 
-#nav ul li:hover ul {
+#nav-nouse ul li:hover ul {
 	display: block;
 }
 
-#nav ul li ul li a:hover {
+#nav-nouse ul li ul li a:hover {
 	background-color: #0066ff;
 }
 
@@ -92,16 +92,20 @@ body {
 }
 
 #Curpage {
-	height: 20px;
-	width: 790px;
-	font-size: 12px;
-	margin-left: 20px;
+  height: 50px;
+  width: 790px;
+  line-height: 50px;
+  font-size: 16px;
+  font-family: "幼圆";
+  margin: 0 auto;
+  text-align: center;
+  background: #cccccc;
 }
 
 #userMessage {
 	width: 285px;
 	height: 200px;
-	margin: 10px 10px;
+	margin: 20px 10px;
 	border: 2px solid royalblue;
 	float: left;
 }
@@ -119,7 +123,7 @@ body {
 	height: 400px;
 	border: 2px solid royalblue;
 	float: left;
-	margin: 10px 5px;
+	margin: 20px 5px;
 	overflow: auto;
 }
 
@@ -131,6 +135,43 @@ body {
 #information a:hover {
 	text-decoration: inherit;
 	color: red
+}
+#userMessage .title
+{
+	position: relative;
+	height: 29px;
+}
+#userMessage .title img
+{
+	 width:285px;
+}
+#userMessage .title span
+{
+	position:absolute;
+	left:40px;
+	top:8px;
+	color: #ffffff;
+	font-size: 14px;
+	font-family:"幼圆";
+	font-weight: bold;
+}
+#information .title img {
+	width: 457px;
+}
+#information .title
+{
+	position: relative;
+}
+#information .title span
+{
+	position:absolute;
+	left:40px;
+	top:8px;
+	color: #ffffff;
+	font-size: 14px;
+	font-family:"幼圆";
+	font-weight: bold;
+	color: #0187c4;
 }
 </style>
 </head>
@@ -152,7 +193,12 @@ body {
 			</p>
 		</div>
 		<div id="userMessage">
-			<img src="<%=request.getContextPath()%>/images/login1.jpg">
+			<div class="title">
+				<img src="<%=request.getContextPath()%>/images/login2.png">
+				<span>
+				<s:text name="login.profile"></s:text>
+				</span>
+			</div>
 			<%
 				if (loginState.equals("success")) {
 			%>
@@ -192,7 +238,7 @@ body {
 				</tr>
 				<tr align="center">
 					<td align="right" width="60"><b><a href="<%=request.getContextPath()%>/index"
-							target="mainFrame"><s:text name='login.click'></s:text></a> </b><s:text name='login.login.again'></s:text></td>
+							><s:text name='login.click'></s:text></a> </b><s:text name='login.login.again'></s:text></td>
 				</tr>
 			</table>
 			<%
@@ -206,7 +252,7 @@ body {
 				</tr>
 				<tr align="center">
 					<td align="right" width="60"><b><a href="<%=request.getContextPath()%>/index"
-							target="mainFrame"><s:text name='login.click'></s:text></a> </b><s:text name='login.login.again'></s:text></td>
+							><s:text name='login.click'></s:text></a> </b><s:text name='login.login.again'></s:text></td>
 				</tr>
 			</table>
 			<%
@@ -215,10 +261,14 @@ body {
 
 		</div>
 		<div id="information">
-			<img src="<%=request.getContextPath()%>/images/inform.png">
+			<div class="title">
+				<img src="<%=request.getContextPath()%>/images/inform2.png">
+				<span>
+				<s:text name="login.notice"></s:text>
+				</span>
+			</div>
 			<ul>
 			</ul>
-
 		</div>
 	</div>
 	<script type="text/javascript" src="<%=request.getContextPath()%>/javascript/jquery-1.11.1.min.js"></script>
@@ -274,5 +324,6 @@ body {
 		
 		})
 	</script>
+<%@include file="footer.jsp"%>
 </body>
 </html>

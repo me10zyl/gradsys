@@ -137,6 +137,10 @@ public class UserAction extends ActionSupport {
 	}
 
 	public String login() throws ClassNotFoundException, SQLException {
+		if(userType == null || password == null || username == null)
+		{
+			return INDEX;
+		}
 		if (userType.equals("student")) {
 			Student student = studentDAO.getByNum(username);
 			if (student != null) {

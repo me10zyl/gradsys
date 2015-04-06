@@ -20,7 +20,8 @@
 <noframes>
 	<body>
 <%@include file="header.jsp" %>
-	</body>
+	<%@include file="footer.jsp"%>
+</body>
 </noframes>
 
 </html>

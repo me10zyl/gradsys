@@ -32,19 +32,19 @@ body {
 	height: 90px;
 }
 
-#nav {
+#nav-nouse {
 	height: 30px;
 	width: 799px;
 	background-color: #0187c4;
 	border: 1px solid #d2d6d8;
 }
 
-#nav ul {
+#nav-nouse ul {
 	list-style: none;
 	margin-top: 2px;
 }
 
-#nav ul li {
+#nav-nouse ul li {
 	margin-left: 50px;
 	float: left;
 	width: 90px;
@@ -53,35 +53,35 @@ body {
 	padding: 0 10px;
 }
 
-#nav a {
+#nav-nouse a {
 	display: block;
 	color: white;
 	text-decoration: none;
 	padding: 0 10px;
 }
 
-#nav a:hover {
+#nav-nouse a:hover {
 	background-color: darkseagreen;
 }
 
-#nav  ul li ul {
+#nav-nouse  ul li ul {
 	top: 120px;
 	display: none;
 	background-color: indianred;
 }
 
-#nav  ul li ul li {
+#nav-nouse  ul li ul li {
 	float: none;
 	background-color: cornflowerblue;
 	margin-left: -40px;
 	padding: 0 0;
 }
 
-#nav ul li:hover ul {
+#nav-nouse ul li:hover ul {
 	display: block;
 }
 
-#nav ul li ul li a:hover {
+#nav-nouse ul li ul li a:hover {
 	background-color: #0066ff;
 }
 
@@ -167,7 +167,7 @@ p{
 	<div id="Bodycontainer">
 		<div id="Curpage">
 			<a class="Curpagea"><s:text name='profile.current.position'></s:text></a> <a href="<%=request.getContextPath()%>/index"
-				style="text-decoration:none; color:#999;" target="mainFrame"><s:text name='profile.homepage'></s:text> </a>
+				style="text-decoration:none; color:#999;" ><s:text name='profile.homepage'></s:text> </a>
 			</li> <a class="Curpagea">><s:text name='notice.title'></s:text></a>
 		</div>
 	<form action="<%=request.getContextPath() %>/notice/delete" method="post">
@@ -186,5 +186,6 @@ p{
 		</div>
 	</form>
 	</div>
+<%@include file="footer.jsp"%>
 </body>
 </html>

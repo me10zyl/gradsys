@@ -11,23 +11,26 @@ body {
 }
 
 #header {
-	height: 120px;
-	width: 800px;
+	width:100%;
+	height:100px;
 	background-color: #0187c4;
 	margin: 0 auto;
+	position: relative;
 }
 
 #logo {
 	margin-left: 90px;
-	width: 320px;
 	height: 90px;
+	display: inline;
 }
 
 #nav {
 	height: 30px;
-	width: 799px;
+	width: 500px;
 	background-color: #0187c4;
-	border: 1px solid #d2d6d8;
+	position: absolute;
+	right: 0;
+	bottom: 0;
 }
 
 #nav ul {
@@ -36,7 +39,7 @@ body {
 }
 
 #nav ul li {
-	margin-left: 50px;
+	margin-left: 5px;
 	float: left;
 	width: 90px;
 	line-height: 25px;
@@ -52,7 +55,7 @@ body {
 }
 
 #nav a:hover {
-	background-color: darkseagreen;
+    text-decoration: underline;
 }
 
 #nav  ul li ul {
@@ -81,16 +84,16 @@ body {
 <body>
 	<div id="header">
 		<div id="logo">
-			<img src="<%=request.getContextPath()%>/images/logo1.png">
+			<img src="<%=request.getContextPath()%>/images/logintest.png">
 		</div>
 		<div id="nav">
 			<ul>
 				<li><a href="<%=request.getContextPath()%>/index"><s:text
 							name="header.homepage"></s:text></a></li>
 				<li><a href="<%=request.getContextPath()%>/user/seeSelf"
-					target="mainFrame"><s:text name="header.profile"></s:text></a></li>
+					><s:text name="header.profile"></s:text></a></li>
 				<li><a href="<%=request.getContextPath()%>/subject/seeSubject"
-					target="mainFrame"><s:text name="header.subject.selection"></s:text></a></li>
+					><s:text name="header.subject.selection"></s:text></a></li>
 				<li><a href="<%=request.getContextPath()%>/i18n"
 					onclick="javascript:void(0)"><s:text name="header.change.language"></s:text></a></li>
 			</ul>
