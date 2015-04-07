@@ -47,11 +47,13 @@ body {
 }
 
 .loginTab {
-	text-align: center;
-	padding: 4px;
-	border-color: #006699;
-	width: 200px;
-	font-size: 12px;
+	margin:0px auto;
+	width:200px;
+	font-size:16px;
+	font-family:"幼圆";
+	font-weight:bold;
+	color:#0066FF;
+	line-height:40px;
 }
 
 #information {
@@ -155,26 +157,26 @@ body {
 					<td align="right" width="60"><input type="submit"
 						value="<s:text name='login.logout'></s:text>"
 						title="<s:text name='login.click.to.logout'></s:text>"
-						style="background-color: royalblue"
+						style="background-color: royalblue;color:white"
 						onClick="javascript:void(location.href='<%=request.getContextPath()%>/user/logout')">
 					</td>
 					<td align="right" width="60"><input type="submit"
 						value="<s:text name='login.teacher.set'></s:text>"
 						title="<s:text name='login.click.to.set'></s:text>"
-						style="background-color: royalblue"
+						style="background-color: royalblue;color:white"
 						onClick="javascript:void(location.href='<%=request.getContextPath()%>/subject/seeSetSubject')"
 						style="font-color:red;"></td>
 					<td align="right" width="60"><input type="submit"
 						value="<s:text name='login.set.notice'></s:text>"
 						title="<s:text name='login.set.notice'></s:text>"
-						style="background-color: royalblue"
+						style="background-color: royalblue;color:white"
 						onClick="javascript:void(location.href='<%=request.getContextPath()%>/notice/seeAdd')"
 						style="font-color:red;"></td>
 				</tr>
 			</table>
 			<p style="margin-left: 150px;">
 				<a href="<%=request.getContextPath()%>/subject/seeSubject"
-					style="color: #0099FF; font-size: 12px"><s:text
+					style="color: #FA7355; font-size: 12px"><s:text
 						name="login.teacher.subject.responsibility"></s:text>>></a>
 			</p>
 			<%

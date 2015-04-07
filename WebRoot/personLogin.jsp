@@ -104,18 +104,20 @@ body {
 
 #userMessage {
 	width: 285px;
-	height: 200px;
+	height: 250px;
 	margin: 20px 10px;
 	border: 2px solid royalblue;
 	float: left;
 }
 
 .loginTab {
-	text-align: center;
-	padding: 4px;
-	border-color: #006699;
-	width: 200px;
-	font-size: 12px;
+	margin:0px auto;
+	width:200px;
+	font-size:16px;
+	font-family:"幼圆";
+	font-weight:bold;
+	color:#0066FF;
+	line-height:40px;
 }
 
 #information {
@@ -218,14 +220,14 @@ body {
 				</tr>
 				<tr align="center">
 					<td align="right" width="60"><input type="submit" value="<s:text name='login.logout'></s:text>"
-						title="<s:text name='login.click.to.logout'></s:text>" style="background-color: royalblue"
+						title="<s:text name='login.click.to.logout'></s:text>" style="background-color: royalblue;color:white"
 						onClick="javascript:void(location.href='<%=request.getContextPath()%>/user/logout')">
 					</td>
 				</tr>
 			</table>
 			<p style="margin-left:150px;">
 				<a href="<%=request.getContextPath()%>/subject/seeSubject"
-					style="color: #0099FF;font-size: 12px"><s:text name="login.check.subject.selection"></s:text>></a>
+					style="color: #FA7355;font-size: 12px"><s:text name="login.check.subject.selection"></s:text>></a>
 			</p>
 			<%
 				} else if (loginState.equals("notexist")) {
