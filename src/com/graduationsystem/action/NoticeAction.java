@@ -65,9 +65,27 @@ public class NoticeAction implements SessionAware, RequestAware {
 		noticeDAO.delete(notice_id);
 		return UserAction.INDEX;
 	}
-
+	
+	public String modify() throws ClassNotFoundException, SQLException 
+	{
+		Notice notice = noticeDAO.getDetailById(notice_id);
+		notice.setNotice_title(notice_title);
+		notice.setNotice_detail(notice_detail);
+		noticeDAO.modify(notice);
+		ActionContext.getContext().getValueStack().setValue("notice_id", notice.getNoticce_id());
+		putModifyMsg();
+		return ACTION_SEE_NOTICE;
+	}
 	public String seeAll() {
 		return SERVLET_AJAX_SEE_ALL;
+	}
+	public void putModifyMsg() {
+		String locale = I18nAction.getLocaleStr();
+		if ("en_US".equals(locale)) {
+			ActionContext.getContext().getValueStack().set("msg", "modfify success!");
+		} else {
+			ActionContext.getContext().getValueStack().set("msg", "修改成功!");
+		}
 	}
 
 	public String seeAdd() {

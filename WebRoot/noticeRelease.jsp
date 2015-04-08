@@ -1,3 +1,4 @@
+<%@page import="com.opensymphony.xwork2.ActionContext"%>
 <%@page import="com.graduationsystem.db.notice.Notice"%>
 <%@page import="com.opensymphony.xwork2.util.ValueStack"%>
 <%@page import="com.graduationsystem.db.notice.NoticeDAO"%>
@@ -170,22 +171,58 @@ p{
 				style="text-decoration:none; color:#999;" ><s:text name='profile.homepage'></s:text> </a>
 			</li> <a class="Curpagea">><s:text name='notice.title'></s:text></a>
 		</div>
-	<form action="<%=request.getContextPath() %>/notice/delete" method="post">
+	<form action="<%=request.getContextPath() %>/notice/modify" method="post" id="form0">
 		<input type="hidden" value="${notice.noticce_id}" name="notice_id">
 		<div id="showMessageBox">
 			<div class="personMessageLogo"><s:text name='notice.title'></s:text></div>
-			<h2><div class="title">${notice.notice_title}</div></h2>
-			<p>${notice.notice_detail}
+			<h2><div class="title" id="title">${notice.notice_title}</div></h2>
+			<p id="detail">${notice.notice_detail}</p>
 			<div class="teacher"><s:text name='notice.teacher'></s:text>${notice_teacher}
 			</div>
 			<s:if test="#session.teacher != null && #request.notice_teacher_id == #session.teacher.teacher_id">
 				<div>
-					<input type="submit" value='<s:text name="notice.delete"></s:text>'>
+					<input type="button" value='<s:text name="notice.delete"></s:text>' id="deleteBtn">
+					<input type="button" value='<s:text name="notice.modify"></s:text>' id="modifyBtn">
 				</div>
 			</s:if>
 		</div>
 	</form>
 	</div>
+<script type="text/javascript" src="<%=request.getContextPath() %>/javascript/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		var mofifyBtnStat = "modify";
+		var title = $("#title");
+		var detail = $("#detail");
+		$('#deleteBtn').click(function(){
+			location.href="<%=request.getContextPath() %>/notice/delete?notice_id=${notice.noticce_id}";
+		})
+		$('#modifyBtn').click(function(){
+			if(mofifyBtnStat == "save")
+			{
+				$('#form0')[0].submit();
+				return;
+			}
+			title.html("<input type='text' name='notice_title' value='${notice.notice_title}'>");
+			detail.html("<textarea name='notice_detail'>${notice.notice_detail}</textarea>");
+			$(this).val("<s:text name='notice.save'></s:text>");
+			mofifyBtnStat = "save";
+		});
+	})
+	window.onload = function(){
+			var msg;
+			<%
+				String msg = ActionContext.getContext().getValueStack().findString("msg");
+				if(msg != null)
+				{
+			%>
+					alert('${msg}')
+			<%
+				}
+			%>
+			
+		}
+</script>
 <%@include file="footer.jsp"%>
 </body>
 </html>
