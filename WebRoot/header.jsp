@@ -29,8 +29,8 @@ body {
 	width: 500px;
 	background-color: #0187c4;
 	position: absolute;
-	right: 0;
-	bottom: 0;
+	right: 30px;
+	bottom: 30px;
 }
 
 #nav ul {
@@ -45,7 +45,9 @@ body {
 	line-height: 25px;
 	text-align: center;
 	padding: 0 10px;
+	font-weight:bold;
 }
+
 
 #nav a {
 	display: block;
