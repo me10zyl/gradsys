@@ -29,6 +29,7 @@ public class SubjectAction extends ActionSupport {
 	private SubjectDAO subjectDAO = new SubjectDAO();
 	private DutyDAO dutyDAO = new DutyDAO();
 	private StudentDAO studentDAO = new StudentDAO();
+	private TeacherDAO teacherDAO = new TeacherDAO();
 	// params
 	private String subject_title;
 	private String subject_detail;
@@ -53,7 +54,20 @@ public class SubjectAction extends ActionSupport {
 	{
 		if(subject_id != null)
 		{
-			subjectDAO.delete(Integer.parseInt(subject_id));
+			int subject_idi = Integer.parseInt(subject_id);
+			//delete duty
+			ArrayList<Teacher> dutyTeachers = subjectDAO.getDutyTeachersBySubjectId(subject_idi);
+			for(Teacher t : dutyTeachers)
+			{
+				dutyDAO.deleteBySubjectIdAndTeacherId(subject_idi,t.getTeacher_id());
+			}
+			//delete student
+			ArrayList<Student> students = subjectDAO.getStudentsWhoChooseBySubjectId(subject_idi);
+			for(Student s : students)
+			{
+				studentDAO.modifySetSubjectIdNull(s);
+			}
+			subjectDAO.delete(subject_idi);
 			return ACTION_SEE_SUBJECT;
 		}
 		return UserAction.INDEX;

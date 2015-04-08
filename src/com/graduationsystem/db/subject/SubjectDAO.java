@@ -2,10 +2,12 @@ package com.graduationsystem.db.subject;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import com.graduationsystem.db.DBMain;
-import java.util.ArrayList;
-import com.graduationsystem.db.teacher.*;
 
+import com.graduationsystem.db.DBMain;
+
+import java.util.ArrayList;
+
+import com.graduationsystem.db.teacher.*;
 import com.graduationsystem.db.duty.*;
 import com.graduationsystem.db.student.*;
 
@@ -49,6 +51,19 @@ public class SubjectDAO extends DBMain<Subject> {
 		}
 		realese();
 		return subjects;
+	}
+	
+	public ArrayList<Student> getStudentsWhoChooseBySubjectId(int subject_id) throws ClassNotFoundException, SQLException {
+		String sql = "select * from student where subject_id = ?";
+		pst = this.getPreparedStatement(sql);
+		pst.setInt(1, subject_id);
+		rst = pst.executeQuery();
+		ArrayList<Student> students = new ArrayList<Student>();
+		while (rst.next()) {
+			students.add(new StudentDAO().assemble(rst));
+		}
+		realese();
+		return students;
 	}
 
 	public Subject getById(int id) throws ClassNotFoundException, SQLException {

@@ -49,6 +49,14 @@ public class StudentDAO extends DBMain<Student> {
 		realese();
 	}
 	
+	public void modifySetSubjectIdNull(Student newStudent) throws ClassNotFoundException, SQLException {
+		String sql = "update student set subject_id=null where student_id=?";
+		pst = this.getPreparedStatement(sql);
+		pst.setInt(1, newStudent.getStudent_id());
+		pst.executeUpdate();
+		realese();
+	}
+	
 	public void modifyWithOutSubject(Student newStudent) throws ClassNotFoundException, SQLException {
 		String sql = "update student set userGroup_id=?,student_num=?,student_name=?,student_gender=?,student_grade=?,student_major=?,student_telphone=?,student_password=? where student_id=?";
 		pst = this.getPreparedStatement(sql);
