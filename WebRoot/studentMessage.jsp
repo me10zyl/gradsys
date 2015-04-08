@@ -1,3 +1,4 @@
+<%@page import="com.opensymphony.xwork2.ActionContext"%>
 <%@page import="com.graduationsystem.db.student.StudentDAO"%>
 <%@page import="com.graduationsystem.db.subject.Subject"%>
 <%@page import="com.graduationsystem.db.subject.SubjectDAO"%>
@@ -235,6 +236,22 @@ body {
 		</div>
 
 	</div>
+	<script type="text/javascript">
+		window.onload = function(){
+			var msg;
+			<%
+				String msg = ActionContext.getContext().getValueStack().findString("msg");
+				if(msg != null)
+				{
+			%>
+					alert('${msg}')
+			<%
+				}
+			%>
+			
+		}
+		
+	</script>
 <%@include file="footer.jsp"%>
 </body>
 </html>

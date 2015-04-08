@@ -87,10 +87,15 @@ public class SubjectAction extends ActionSupport {
 
 	public String modify() throws ClassNotFoundException, SQLException {
 		if (subject_id != null) {
+			TeacherDAO teacherDAO = new TeacherDAO();
 			int subject_id_int = Integer.parseInt(subject_id);
 			Subject subject = new Subject(subject_id_int,subjectDAO.getById(subject_id_int).getTeacher_id(), subject_title, subject_description);
+			Teacher teacher_set = teacherDAO.getById(subject.getTeacher_id());
 			subjectDAO.modify(subject);
 			request.setAttribute("subject", subject);
+			request.setAttribute("teacher_id_set", teacher_set.getTeacher_id());
+			request.setAttribute("teacher_set", teacher_set.getTeacher_name());
+			putModifyMsg();
 			return SUBJECT_DETAIL;
 		}
 		return UserAction.INDEX;
@@ -141,6 +146,15 @@ public class SubjectAction extends ActionSupport {
 			return SUBJECT_DETAIL;
 		}
 		return ERROR;
+	}
+	
+	public void putModifyMsg() {
+		String locale = I18nAction.getLocaleStr();
+		if ("en_US".equals(locale)) {
+			ActionContext.getContext().getValueStack().set("msg", "modfify success!");
+		} else {
+			ActionContext.getContext().getValueStack().set("msg", "修改成功!");
+		}
 	}
 
 	public String set() throws ClassNotFoundException, SQLException {

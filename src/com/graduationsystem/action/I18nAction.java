@@ -17,7 +17,7 @@ public class I18nAction extends ActionSupport implements SessionAware,RequestAwa
 	@Override
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
-		String locale = ActionContext.getContext().getValueStack().findString("locale");
+		String locale = getLocaleStr();
 		if ("en_US".equals(locale)) {
 			session.put("WW_TRANS_I18N_LOCALE", Locale.CHINA);
 		} else {
@@ -25,6 +25,10 @@ public class I18nAction extends ActionSupport implements SessionAware,RequestAwa
 		}
 		request.put("refresh",true);
 		return super.execute();
+	}
+
+	public static String getLocaleStr() {
+		return ActionContext.getContext().getValueStack().findString("locale");
 	}
 
 	public void setSession(Map<String, Object> session) {

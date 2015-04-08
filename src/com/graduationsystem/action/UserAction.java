@@ -1,6 +1,7 @@
 package com.graduationsystem.action;
 
 import java.sql.SQLException;
+import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -11,6 +12,7 @@ import com.graduationsystem.db.student.Student;
 import com.graduationsystem.db.student.StudentDAO;
 import com.graduationsystem.db.teacher.Teacher;
 import com.graduationsystem.db.teacher.TeacherDAO;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class UserAction extends ActionSupport {
@@ -195,6 +197,7 @@ public class UserAction extends ActionSupport {
 			newStudent.setStudent_telphone(student_telphone);
 			newStudent.setStudent_password(student_password);
 			studentDAO.modifyWithOutSubject(newStudent);
+			putModifyMsg();
 			return STUDENT_PROFILE;
 		} else if (userType.equals("teacher")) {
 			Teacher teacher = (Teacher) session.getAttribute("teacher");
@@ -205,9 +208,20 @@ public class UserAction extends ActionSupport {
 			teacher.setTeacher_telephone(teacher_telephone);
 			teacher.setTeacher_password(teacher_password);
 			teacherDAO.modify(teacher);
+			ActionContext.getContext().getValueStack().set("msg", "修改成功!");
+			putModifyMsg();
 			return TEACHER_PROFILE;
 		}
 		return INDEX;
+	}
+
+	public void putModifyMsg() {
+		String locale = I18nAction.getLocaleStr();
+		if ("en_US".equals(locale)) {
+			ActionContext.getContext().getValueStack().set("msg", "modfify success!");
+		} else {
+			ActionContext.getContext().getValueStack().set("msg", "修改成功!");
+		}
 	}
 
 	public String seeOtherStudent() {

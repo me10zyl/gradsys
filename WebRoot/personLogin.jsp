@@ -104,7 +104,7 @@ body {
 
 #userMessage {
 	width: 285px;
-	height: 250px;
+	height: 280px;
 	margin: 20px 10px;
 	border: 2px solid royalblue;
 	float: left;

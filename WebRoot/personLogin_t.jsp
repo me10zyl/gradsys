@@ -40,7 +40,7 @@ body {
 
 #userMessage {
 	width: 285px;
-	height: 200px;
+	height: 230px;
 	margin: 20px 10px;
 	border: 2px solid royalblue;
 	float: left;

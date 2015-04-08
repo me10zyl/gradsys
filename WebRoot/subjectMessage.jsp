@@ -1,3 +1,4 @@
+<%@page import="com.opensymphony.xwork2.ActionContext"%>
 <%@page import="com.graduationsystem.db.teacher.TeacherDAO"%>
 <%@page import="com.graduationsystem.db.teacher.Teacher"%>
 <%@page import="java.util.ArrayList"%>
@@ -173,14 +174,14 @@ body {
 					<tr>
 						<td align="right"><s:text name='subject.set.subject.name'></</s:text></td>
 						<td align="left" id="title"><input type='text' id='title_input'
-							value="<%=subject.getSubject_title()%>" disabled="disabled"
+							value="<%=subject.getSubject_title()%>"
 							name='subject_title'></td>
 						<td align="left">
 							<%
 								if (userType.equals("teacher") && teacher_id_set == teacher_id) {
-							%> <input type="button"
+							%> <%-- <input type="button"
 							value="<s:text name='profile.modify'></s:text>" title="点击<s:text name='profile.modify'></s:text>" style="background-color: #FF7415"
-							style="font-color:red;" onclick="modify(0)">
+							style="font-color:red;" onclick="modify(0)"> --%>
 							<%
 								}
 							%>
@@ -218,7 +219,7 @@ body {
 							if (userType.equals("teacher") && teacher_id_set == teacher_id) {
 						%>
 						<td align="center"><input type="submit" value="<s:text name='subject.detail.save'></s:text>"
-							title="点击修改" style="background-color: royalblue"
+							title="点击保存" style="background-color: royalblue"
 							style="font-color:red;" onclick="removeDiabled()">
 						</td>
 						<td align="left"><input type="button" value="<s:text name='subject.detail.delete'></s:text>"
@@ -232,7 +233,6 @@ body {
 					<tr>
 				</table>
 		</form>
-	</div>
 	</div>
 	<script type="text/javascript">
 		function delete_()
@@ -265,6 +265,32 @@ body {
 		 input.removeAttributeNode(input.getAttributeNode("disabled"));
 		 input.setAttribute("readonly","readonly");
 		}
+		function getRequest() {
+			   var url = location.search; //获取url中"?"符后的字串
+			   var theRequest = new Object();
+			   if (url.indexOf("?") != -1) {
+			      var str = url.substr(1);
+			      strs = str.split("&");
+			      for(var i = 0; i < strs.length; i ++) {
+			         theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);
+			      }
+			   }
+			   return theRequest;
+		}
+		window.onload = function(){
+			var msg;
+			<%
+				String msg = ActionContext.getContext().getValueStack().findString("msg");
+				if(msg != null)
+				{
+			%>
+					alert('${msg}')
+			<%
+				}
+			%>
+			
+		}
+		
 	</script>
 <%@include file="footer.jsp"%>
 </body>
